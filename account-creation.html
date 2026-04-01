@@ -3,26 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./styles/login.css">
     <title>Diskuti | Create Account</title>
 </head>
 <body>
-    <main>
+    <main class="horizontal">
         <section class="banner vertical">
             <h2>Quiz - Discuss - Connect</h2>
-            <img src="./resources/banner-img.png" alt="Account Creation and Login pages' banner image">
+            <img src="./resources/banner-img.svg" alt="Account Creation and Login pages' banner image">
         </section>
         
         <section class="area vertical">
             <div class="area-banner">
                 <img src="./resources/logo.png" alt="">
                 <h1>Create an Acount</h1>
+                <span class="external-link">Already have an account? <a href="./login.html">Log In</a></span>
             </div>
-            <div class="area-form">
-                <span>Already have an account? <a href="./login.html" class="link">Log In</a></span>
-                
-                <form action="#">
-                    <div class="horizontal">
+            <div class="area-form">                
+                <form action="#"> 
+                    <div class="horizontal full-name">
                         <input type="text" name="first-name" id="first-name" placeholder="First name">
                         <input type="text" name="last-name" id="last-name" placeholder="Last name">
                     </div>
