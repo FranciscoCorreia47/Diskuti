@@ -6,7 +6,7 @@ main {
   "menu   search  chat"
   "menu   feed    chat"
   "foot   foot    foot";
-  grid-template-columns: 0.6fr 2fr 1fr;
+  grid-template-columns: 0.4fr 2fr 1fr;
   grid-template-rows: 1fr 1fr 2fr 0.5fr;
   gap: 1em;
 }
@@ -44,27 +44,43 @@ main {
 }
 
 .bar {
-    display: flex;
-    padding: 20px 10px;
-    width: auto;
-    border-radius: 50px;
-    border: 2px solid #31e0b1;
+  display: flex;
+  padding: 20px 10px;
+  width: auto;
+  border-radius: 50px;
+  border: 2px solid #31e0b1;
+  gap: 2em;
+}
+
+.menu .bar {
+  box-shadow: #aaa 8px 3px 8px;
 }
 
 .menu-item {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 48px;
-    height: 48px;
-    border-radius: 100%;
-    box-shadow: #aaa 1px 1px 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 100%;
+  box-shadow: #aaa 1px 1px 5px;
+  transition: all 0.5s ease;
+}
+
+.menu-item:hover {
+  box-shadow: #aaa 1px 1px 8px;
+  transform: scale(1.2);
 }
 
 .feed {
   display: flex;
   flex-direction: column;
   gap: 1em;
+}
+
+.feed>h1 {
+  font-size: 1.5em;
+  color: #e03160;
 }
 
 .feed-wrapper {
@@ -81,9 +97,22 @@ main {
   border-radius: 1.5em;
 }
 
+.logo {
+  margin-top: 3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .search>.bar {
   width: 50em;
-  height: fit-content;
+  height: 1em;
 }
 
 .bar>input {
@@ -93,8 +122,59 @@ main {
 }
 
 .chatbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chatbar>.box {
   border: 2px solid #31e0b1;
   height: 30rem;
   width: 25rem;
   gap: 0px;
+  border-radius: 1.5em;
+}
+
+.box>h1 {
+  margin-left: 0.5em;
+}
+
+.chat-list {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-contact {
+  width: 100%;
+  height: 4em;
+  border-left: 2px solid #31e0b1;
+  border-right: 2px solid #31e0b1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  transition: all 0.5s ease;
+}
+
+.chat-contact:hover {
+  background-color: #e1e1e1;
+}
+
+.chat-contact>span {
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: 450;
+}
+
+.contact-picture {
+  border: 1px solid #e03160;
+  border-radius: 100%;
+  height: 2.5em;
+  width: 2.5em;
+  margin-right: 1em;
+  margin-left: 0.5em;
 }
