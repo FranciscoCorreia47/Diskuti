@@ -6,7 +6,7 @@ main {
   "menu   search  chat"
   "menu   feed    chat"
   "foot   foot    foot";
-  grid-template-columns: 0.4fr 2fr 1fr;
+  grid-template-columns: 0.4fr 2.5fr 1fr;
   grid-template-rows: 1fr 1fr 2fr 0.5fr;
   gap: 1em;
 }
@@ -35,6 +35,12 @@ main {
   grid-area: foot;
 }
 
+.menu {
+  position: fixed;
+  top: 25vh;
+  left: 2.5vw;
+}
+
 .menu ul{
   list-style: none;
 }
@@ -46,22 +52,23 @@ main {
 .bar {
   display: flex;
   padding: 20px 10px;
-  width: auto;
-  border-radius: 50px;
+  width: 4em;
+  border-radius: 30px;
   border: 2px solid #31e0b1;
   gap: 2em;
 }
 
 .menu .bar {
-  box-shadow: #aaa 8px 3px 8px;
+  box-shadow: #aaa 4px 3px 8px;
+  transform: scale(1.15);
 }
 
 .menu-item {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 48px;
-  height: 48px;
+  width: 60px;
+  height: 60px;
   border-radius: 100%;
   box-shadow: #aaa 1px 1px 5px;
   transition: all 0.5s ease;
@@ -69,7 +76,8 @@ main {
 
 .menu-item:hover {
   box-shadow: #aaa 1px 1px 8px;
-  transform: scale(1.2);
+  transform: scale(1.1);
+  cursor: pointer;
 }
 
 .feed {
@@ -95,6 +103,13 @@ main {
   background-color: #f1f1f1;
   border: 2px solid #31e0b1;
   border-radius: 1.5em;
+  transition: all 0.5s ease;
+}
+
+.feed-item:hover {
+  transform: scale(1.05);
+  box-shadow: #aaa 4px 6px 8px;
+  cursor: pointer;
 }
 
 .logo {
@@ -102,6 +117,10 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.logo>img {
+  width: 35em;
 }
 
 .search {
@@ -113,23 +132,36 @@ main {
 .search>.bar {
   width: 50em;
   height: 1em;
+  align-items: center;
 }
 
 .bar>input {
   width: 100em;
+  height: 2em;
   border: none;
   background-color: inherit;
+  padding-left: 1em;
+  font-size: 1.2em;
+}
+
+.bar>input:focus {
+  outline: none;
 }
 
 .chatbar {
+  position: fixed;
+  top: 12.5vh;
+  right: 2.5vw;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: #aaa 4px 3px 8px;
+  border-radius: 1.5em;
 }
 
 .chatbar>.box {
-  border: 2px solid #31e0b1;
-  height: 30rem;
+  border: 3px solid #31e0b1;
+  height: 45rem;
   width: 25rem;
   gap: 0px;
   border-radius: 1.5em;
@@ -162,6 +194,7 @@ main {
 
 .chat-contact:hover {
   background-color: #e1e1e1;
+  cursor: pointer;
 }
 
 .chat-contact>span {
