@@ -12,6 +12,9 @@ main {
 }
 
 .menu {
+  position: fixed;
+  top: 15vh;
+  left: 2vw;
   grid-area: menu;
 }
 
