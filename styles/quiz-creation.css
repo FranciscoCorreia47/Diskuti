@@ -67,6 +67,11 @@ main {
   width: 12.5em;
 }
 
+.top-menu h1 {
+  font-size: 2.5rem;
+  color: #f1f1f1;
+}
+
 a {
   color: #e03160;
 }
@@ -106,4 +111,76 @@ a {
 
 .expand {
   width: 15em;
+}
+
+.text-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  height: 20%;
+}
+
+.text-input {
+  border: none;
+  width: 100%;
+  height: fit-content;
+  resize: none;
+  outline: none;
+  font-size: 1.3rem;
+  background-color: #f5f5f5;
+}
+
+.text-input:focus {
+  border-bottom: 2px solid #31e0b1;
+}
+
+.question-div {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.question-text {
+  font-size: 1.5rem;
+  color: #31e0b1;
+  background-color: #f5f5f5;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid #e03160; /* Transformar em um div com uma animação agradável */
+}
+
+.question-text::placeholder {
+  color: #20dfa088;
+}
+
+.options-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.7rem;
+}
+
+.radio-option, .checkbox-option {
+  border: none;
+  outline: none;
+  font-size: 1.3rem;
+  background-color: #f5f5f5;
+}
+
+.add-option {
+  font-size: 2rem;
+  color: #31e0b1;
+  background-color: inherit;
+  border: none;
+  width: fit-content;
+  transition: all 0.7s ease;
+}
+
+.add-option:hover {
+  transform: scale(1.3);
+  cursor: pointer;
 }

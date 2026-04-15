@@ -49,6 +49,10 @@ main {
   color: #e03160;
 }
 
+.menu-item>a {
+  color: #e03160;
+}
+
 .bar {
   display: flex;
   padding: 20px 10px;
@@ -70,6 +74,7 @@ main {
   width: 60px;
   height: 60px;
   border-radius: 100%;
+  color: #e03160;
   box-shadow: #aaa 1px 1px 5px;
   transition: all 0.5s ease;
 }
@@ -270,4 +275,8 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.foot {
+  background-color: #e1e1e1;
 }
