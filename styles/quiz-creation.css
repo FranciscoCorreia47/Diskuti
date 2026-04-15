@@ -1,0 +1,109 @@
+main {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-areas:
+  "top  top"
+  "side preview";
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 1fr 4fr;
+}
+
+.top-bar {
+  grid-area: top;
+  background-color: #e03160;
+  width: 100%;
+  height: 6em;
+}
+
+.side-bar {
+  grid-area: side;
+  background-color: #f1f1f1;
+  height: 54.05em;
+  width: 10em;
+  border-right: #777 2px solid;
+  transition: all 0.6s ease;
+}
+
+.preview-area {
+  grid-area: preview;
+}
+
+.top-menu  {
+  margin: 0px 1.5em; 
+  width: 100%;
+  gap: 3em;
+  justify-content: space-between;
+}
+
+.top-menu .buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
+
+.top-menu>.buttons button{
+  border: none;
+  border-radius: 0.6em;
+  height: 2.5em;
+  width: 7em;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: 500;
+  transition: all 0.9s ease;
+}
+
+.top-menu>.buttons button:hover {
+  transform: scale(1.1);
+  font-weight: 600;
+  color: #e03160;
+  cursor: pointer;
+}
+
+.top-menu img {
+  width: 12.5em;
+}
+
+a {
+  color: #e03160;
+}
+
+.side-menu li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 6em;
+  height: 6em;
+  border-radius: 100%;
+  gap: 1.5em;
+  box-shadow: #aaa 1px 1px 5px;
+  transition: all 0.8s ease;
+}
+
+.side-menu li:hover {
+  width: 14em;
+  border-radius: 5em;
+  box-shadow: #aaa 1px 1px 8px;
+  cursor: pointer;
+}
+
+.side-menu img {
+  width: 3.5em;
+}
+
+.side-menu span {
+  display: none;
+  transition: all 1s ease;
+}
+
+.side-menu li:hover span {
+  display: block;
+  font-size: 1.3em;
+}
+
+.expand {
+  width: 15em;
+}
