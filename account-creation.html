@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="./styles/reset.css">
     <link rel="stylesheet" type="text/css" href="./styles/login.css">
     <link rel="stylesheet" type="text/css" href="./styles/styles.css">
+    <script src="https://kit.fontawesome.com/c818a7c46a.js" crossorigin="anonymous"></script>
     <title>Diskuti | Create Account</title>
 </head>
 <body>
@@ -31,11 +32,17 @@
                         <input type="text" name="last-name" id="last-name" placeholder="Last name">
                     </div>
                     <input type="email" name="email" id="email" placeholder="Email">
-                    <input type="password" name="password" id="password" placeholder="Password">
+                    <div id="input-wrapper">
+                        <input class="txt-input" type="password" name="password" id="password" placeholder="Password">
+                        <div class="vertical-separator"></div>
+                        <span class="toggle-password fa-solid fa-eye" id="toggle-eye"></span>
+                    </div>
                     <input type="button" name="send-btn" id="send-btn" value="Create Account">
                 </form>
             </div>
         </section>
     </main>
+
+    <script src="./login.js"></script>
 </body>
 </html>

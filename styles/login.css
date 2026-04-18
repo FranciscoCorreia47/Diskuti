@@ -10,11 +10,11 @@
     height: 100vh;
     border-radius: 0 24px 24px 0;
     background: linear-gradient(135deg, #e03160, #e03160, #31e0b1);
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 2.5rem rgba(0, 0, 0, 0.6);
 }
 
 .banner img {
-    width: 550px;
+    width: 40vw;
 }
 
 .banner h2 {
@@ -27,14 +27,19 @@
     height: 100vh;
 }
 
+.area-banner {
+    width: 60%;
+}
+
 .area-banner img {
-    width: 200px;
-    margin-bottom: 30px;
+    width: 15vw;
+    margin-bottom: 1rem;
 }
 
 .area-banner h1 {
-    font-size: 3.2rem;
+    font-size: 2.8rem;
     color: #202020;
+    margin-bottom: 1rem;
 }
 
 .area-banner h3 {
@@ -53,12 +58,12 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 1rem;
 }
 
 input[type="email"], input[type="password"], input[type="text"] {
     height: 2.7rem;
-    padding: 0 20px;
+    padding: 0 1rem;
     font-size: 1.1rem;
     border: 1px solid #202020;
     border-radius: 4px;
@@ -85,10 +90,10 @@ input[type="button"]:hover {
 }
 
 .separator {
-    width: 300px;
-    height: 2px;
-    background-color: #c2c2c2;
-    margin: 30px 0;
+    width: 75%;
+    height: 0.1rem;
+    background-color: #8b8b8b;
+    margin: 1.5rem 0;
 }
 
 .external-link {
@@ -96,7 +101,7 @@ input[type="button"]:hover {
     color: #202020;
 }
 
-.external-link a {
+.external-link a, .external-link a:visited {
     color: #31e0b1;
 }
 
@@ -106,4 +111,37 @@ input[type="button"]:hover {
 
 .full-name input{
     width: 49%;
+}
+
+#input-wrapper {
+    position: relative;
+}
+
+#input-wrapper input {
+    width: 100%;
+}
+
+.toggle-password {
+    position: absolute;
+    top: 35%;
+    right: 4%;
+    color: #505050;
+    cursor: pointer;
+}
+
+.vertical-separator {
+    position: absolute;
+    top: 15%;
+    right: 12%;
+    background-color: #afafaf;
+    height: 70%;
+    width: 1px;
+}
+
+.toggle-password:hover {
+    color: #31e0b1;
+}
+
+.toggle-password:active {
+    color: #00d199;
 }

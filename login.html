@@ -9,6 +9,7 @@
   <link rel="stylesheet" type="text/css" href="./styles/reset.css">
   <link rel="stylesheet" type="text/css" href="./styles/login.css">
   <link rel="stylesheet" type="text/css" href="./styles/styles.css">
+  <script src="https://kit.fontawesome.com/c818a7c46a.js" crossorigin="anonymous"></script>
   <title>Diskuti | Login</title>
 </head>
 <body>
@@ -29,13 +30,19 @@
       <div class="area-form">
         <form action="#">
           <input class="txt-input" type="email" name="email" id="email" placeholder="Email">
-          <input class="txt-input" type="password" name="password" id="password" placeholder="Password">
+          <div id="input-wrapper">
+            <input class="txt-input" type="password" name="password" id="password" placeholder="Password">
+            <div class="vertical-separator"></div>
+            <span class="toggle-password fa-solid fa-eye" id="toggle-eye"></span>
+          </div>
           <input class="btn-input" type="button" name="login" id="login" value="Log In">
         </form>
         <div class="separator"></div> <!--A linha que tem de separação-->
-        <span>Don't have an account? <a href="account-creation.html">Sign Up</a></span>
+        <span class="external-link">Don't have an account? <a href="account-creation.html">Sign Up</a></span>
       </div>
     </section>
   </main>
+
+  <script src="./login.js"></script>
 </body>
 </html>
