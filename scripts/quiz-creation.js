@@ -67,10 +67,10 @@ radio_button.addEventListener("click", function(){
   add_option_button.textContent = "+";
 
   options_div.appendChild(curr_option);
-  options_div.appendChild(add_option_button);
   
   question_div.appendChild(question);
   question_div.appendChild(options_div);
+  question_div.appendChild(add_option_button);
 
   preview_area.appendChild(question_div);
 
