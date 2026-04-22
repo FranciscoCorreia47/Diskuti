@@ -61,6 +61,12 @@
     gap: 1rem;
 }
 
+.input-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+}
+
 input[type="email"], input[type="password"], input[type="text"] {
     height: 2.7rem;
     padding: 0 1rem;
@@ -110,7 +116,8 @@ input[type="button"]:hover {
 }
 
 .full-name input{
-    width: 49%;
+    max-width: 49%;
+    flex-wrap: wrap;
 }
 
 #input-wrapper {
@@ -144,4 +151,22 @@ input[type="button"]:hover {
 
 .toggle-password:active {
     color: #00d199;
+}
+
+#name-error {
+    display: none;
+    color: rgb(233, 1, 1);
+    font-size: 0.8rem;
+}
+
+#email-error {
+    display: none;
+    color: rgb(233, 1, 1);
+    font-size: 0.8rem;
+}
+
+#password-error {
+    display: none;
+    color: rgb(233, 1, 1);
+    font-size: 0.8rem;
 }

@@ -28,10 +28,10 @@
         <h3>Jump back into the discussion!</h3>
       </div>
       <div class="area-form">
-        <form action="#">
-          <input class="txt-input" type="email" name="email" id="email" placeholder="Email">
+        <form action="" method="POST">
+          <input class="txt-input" type="email" name="email" id="email" placeholder="Email" required>
           <div id="input-wrapper">
-            <input class="txt-input" type="password" name="password" id="password" placeholder="Password">
+            <input class="txt-input" type="password" name="password" id="password" placeholder="Password" maxlength="256" required>
             <div class="vertical-separator"></div>
             <span class="toggle-password fa-solid fa-eye" id="toggle-eye"></span>
           </div>
