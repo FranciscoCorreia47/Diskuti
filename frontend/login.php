@@ -43,6 +43,6 @@
     </section>
   </main>
 
-  <script src="./login.js"></script>
+  <script src="./scripts/login.js"></script>
 </body>
 </html>

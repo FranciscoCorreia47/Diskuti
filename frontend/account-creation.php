@@ -48,26 +48,10 @@
                     </div>
                     <input type="button" name="send-btn" id="send-btn" value="Create Account">
                 </form>
-
-                <?php
-                    if ($_SERVER["REQUEST_METHOD"] === "POST") {
-                        include "config.php";
-
-                        $first_name = $_POST["first-name"];
-                        $last_name = $_POST["last-name"];
-                        $email = $_POST["email"];
-                        $password = $_POST["password"];
-
-                        $stmt = $connection->prepare("INSERT INTO users(first_name, last_name, email, password) VALUES(?, ?, ?, ?);");
-
-                        $stmt->bind_param("ssss", $first_name, $last_name, $email, $password);
-                        $stmt->execute();
-                    }
-                ?>
             </div>
         </section>
     </main>
 
-    <script src="./login.js"></script>
+    <script src="./scripts/login.js"></script>
 </body>
 </html>
