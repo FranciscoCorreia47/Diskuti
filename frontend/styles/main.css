@@ -234,7 +234,7 @@ main {
   align-items: center;
   gap: 1.5em;
   width: 35vw;
-  height: 30vh;
+  height: 35vh;
   background-color: #f5f5f5;
   border: 2px solid #31e0b1;
   border-radius: 1.5em;
@@ -243,12 +243,23 @@ main {
 .new-quiz>h2 {
   color: #e03160;
   font-size: 2em;
+  margin-left: 0.5em;
 }
 
 .new-quiz>.bar {
   width: 70%;
   height: 3%;
   box-shadow: none;
+}
+
+.new-quiz input {
+  transition: all 0.7s ease;
+}
+
+.new-quiz input:focus {
+  outline: none;
+  transform: scale(1.2);
+  box-shadow: 0px 5px 6px #aaa;
 }
 
 .new-quiz>button {
