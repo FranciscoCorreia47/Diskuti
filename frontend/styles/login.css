@@ -1,172 +1,192 @@
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        
-    }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
 
-    .banner {
-        width: 50vw;
-        height: 100vh;
-        border-radius: 0 24px 24px 0;
-        background: linear-gradient(135deg, #e03160, #e03160, #31e0b1);
-        box-shadow: 0 0 2.5rem rgba(0, 0, 0, 0.6);
-    }
+.banner {
+    width: 50vw;
+    height: 100vh;
+    border-radius: 0 24px 24px 0;
+    background: linear-gradient(135deg, #e03160, #e03160, #31e0b1);
+    box-shadow: 0 0 2.5rem rgba(0, 0, 0, 0.6);
+}
 
-    .banner img {
-        width: 40vw;
-    }
+.banner img {
+    width: 40vw;
+}
 
-    .banner h2 {
-        font-size: 3rem;
-        color: #eaeaea;
-    }
+.banner h2 {
+    font-size: 3rem;
+    color: #eaeaea;
+}
 
-    .area {
-        width: 50vw;
-        height: 100vh;
-    }
+.area {
+    width: 50vw;
+    height: 100vh;
+}
 
-    .area-banner {
-        width: 60%;
-    }
+.area-banner {
+    width: 60%;
+}
 
-    .area-banner img {
-        width: 15vw;
-        margin-bottom: 1rem;
-    }
+.area-banner img {
+    width: 15vw;
+    margin-bottom: 1rem;
+}
 
-    .area-banner h1 {
-        font-size: 2.8rem;
-        color: #202020;
-        margin-bottom: 1rem;
-    }
+.area-banner h1 {
+    font-size: 2.8rem;
+    color: #202020;
+    margin-bottom: 1rem;
+}
 
-    .area-banner h3 {
-        font-size: 1.3rem;
-        color: #202020;
-    }
+.area-banner h3 {
+    font-size: 1.3rem;
+    color: #202020;
+}
 
-    .area-form {
-        width: 60%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+.area-form {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-    .area-form form {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
+.area-form form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
 
-    .input-box {
-        display: flex;
-        flex-direction: column;
-        gap: 0.4rem;
-    }
+.input-box {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
 
-    input[type="email"], input[type="password"], input[type="text"] {
-        height: 2.7rem;
-        padding: 0 1rem;
-        font-size: 1.1rem;
-        border: 1px solid #202020;
-        border-radius: 4px;
-        color: #202020;
-    }
+input[type="email"], input[type="password"], input[type="text"] {
+    height: 2.7rem;
+    padding: 0 1rem;
+    font-size: 1.1rem;
+    border: 1px solid #202020;
+    border-radius: 4px;
+    color: #202020;
+}
 
-    input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focus {
-        border: 2px solid #31e0b1;
-        outline: none;
-    }
+input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focus {
+    border: 2px solid #31e0b1;
+    outline: none;
+}
 
-    input[type="button"] {
-        height: 2.7rem;
-        border-radius: 20px;
-        font-size: 1rem;
-        border: 0px;
-        background-color: #e03160;
-        color: #eaeaea;
-        cursor: pointer;
-    }
+input[type="button"] {
+    height: 2.7rem;
+    border-radius: 20px;
+    font-size: 1rem;
+    border: 0px;
+    background-color: #e03160;
+    color: #eaeaea;
+    cursor: pointer;
+}
 
-    input[type="button"]:hover {
-        background-color: #e41c51;
-    }
+input[type="button"]:hover {
+    background-color: #e41c51;
+}
 
-    .separator {
-        width: 75%;
-        height: 0.1rem;
-        background-color: #8b8b8b;
-        margin: 1.5rem 0;
-    }
+.separator {
+    width: 75%;
+    height: 0.1rem;
+    background-color: #8b8b8b;
+    margin: 1.5rem 0;
+}
 
-    .external-link {
-        font-size: 1rem;
-        color: #202020;
-    }
+.external-link {
+    font-size: 1rem;
+    color: #202020;
+}
 
-    .external-link a, .external-link a:visited {
-        color: #31e0b1;
-    }
+.external-link a, .external-link a:visited {
+    color: #31e0b1;
+}
 
-    .external-link a:hover {
-        color: #00d199;
-    }
+.external-link a:hover {
+    color: #00d199;
+}
 
-    .full-name input{
-        max-width: 49%;
-        flex-wrap: wrap;
-    }
+.full-name input{
+    max-width: 49%;
+    flex-wrap: wrap;
+}
 
-    #input-wrapper {
-        position: relative;
-    }
+#input-wrapper {
+    position: relative;
+}
 
-    #input-wrapper input {
-        width: 100%;
-    }
+#input-wrapper input {
+    width: 100%;
+}
 
-    .toggle-password {
-        position: absolute;
-        top: 35%;
-        right: 4%;
-        color: #505050;
-        cursor: pointer;
-    }
+.toggle-password {
+    position: absolute;
+    top: 35%;
+    right: 4%;
+    color: #505050;
+    cursor: pointer;
+}
 
-    .vertical-separator {
-        position: absolute;
-        top: 15%;
-        right: 12%;
-        background-color: #afafaf;
-        height: 70%;
-        width: 1px;
-    }
+.vertical-separator {
+    position: absolute;
+    top: 15%;
+    right: 12%;
+    background-color: #afafaf;
+    height: 70%;
+    width: 1px;
+}
 
-    .toggle-password:hover {
-        color: #31e0b1;
-    }
+.toggle-password:hover {
+    color: #31e0b1;
+}
 
-    .toggle-password:active {
-        color: #00d199;
-    }
+.toggle-password:active {
+    color: #00d199;
+}
 
-    #name-error {
-        display: none;
-        color: rgb(233, 1, 1);
-        font-size: 0.8rem;
-    }
+#name-error {
+    display: none;
+    color: rgb(233, 1, 1);
+    font-size: 0.8rem;
+}
 
-    #email-error {
-        display: none;
-        color: rgb(233, 1, 1);
-        font-size: 0.8rem;
-    }
+#email-error {
+    display: none;
+    color: rgb(233, 1, 1);
+    font-size: 0.8rem;
+}
 
-    #password-error {
-        display: none;
-        color: rgb(233, 1, 1);
-        font-size: 0.8rem;
-    }
+#password-error {
+    display: none;
+    color: rgb(233, 1, 1);
+    font-size: 0.8rem;
+}   
+
+.login-error {
+    width: 100%;
+    height: 3.5rem;
+    background-color: rgb(255, 154, 154);
+    border: 1px solid rgb(221, 63, 63);
+    border-radius: 4px;
+    margin-top: -1rem;
+    margin-bottom: 1.2rem;
+    padding-left: 1rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.login-error span{
+    font-size: 1.1rem;
+    color: #202020;
+}

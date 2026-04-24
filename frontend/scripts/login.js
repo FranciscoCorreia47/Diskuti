@@ -39,6 +39,21 @@ login_btn.addEventListener("click", function(){
             if(data === "ok"){
                 window.location.href = "./index.php";
             }
+            else{
+                const form_area = document.querySelector(".area-form");
+                const login_error = document.createElement("div");
+                const error_text = document.createElement("span");
+                const error_symbol = document.createElement("span");
+
+                login_error.classList.add("login-error");
+                error_symbol.classList.add("fa-solid");
+                error_symbol.classList.add("fa-triangle-exclamation");
+                error_text.textContent = "Login failed. Please try again!";
+
+                login_error.appendChild(error_symbol);
+                login_error.appendChild(error_text);
+                form_area.prepend(login_error);
+            }
         })
 
         email.value = "";
