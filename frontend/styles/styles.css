@@ -20,8 +20,3 @@ body {
     gap: 3.5rem;
 }
 
-.separator {
-    height: 1px;
-    background-color: #525252;
-    width: 100%;
-}

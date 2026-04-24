@@ -1,3 +1,15 @@
+<?php
+  session_start();
+  if((!isset($_SESSION["email"])) || (!isset($_SESSION["password"]))){
+    unset($_SESSION["email"]);
+    unset($_SESSION["password"]);
+    header("location: login.php");
+  }
+
+  $logged_in = ["email"];
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
