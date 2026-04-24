@@ -18,102 +18,45 @@ toggle_eye.addEventListener("click", function(){
 })
 
 
-// Validation of the account creation data 
-const submit = document.querySelector("#send-btn");
-const first_name = document.querySelector("#first-name");
-const last_name = document.querySelector("#last-name");
+// Validation of the login data 
+const login_btn = document.querySelector("#login-btn")
 const email = document.querySelector("#email");
 const password = document.querySelector("#password");
 
-submit.addEventListener("click", function(){
-    //User name validation
-    if(first_name.value.length > 20){
-        const error_message = document.querySelector("#name-error")
-        error_message.textContent = "First and Last name must contain a maximum of 20 characters";
-        error_message.style.display = "block";
-        first_name.style.border = "1px solid red";
 
-        return;
+login_btn.addEventListener("click", function(){
+    console.log("botão clicado");
+    console.log("email:", email.value);
+    console.log("password:", password.value);
+    if(email.value != "" && password.value != ""){
+        fetch("../backend/user-login.php", {
+            method: "POST",
+            body: new FormData(document.querySelector("#login-form"))
+        })
+        .then(response => response.text())
+        .then(data => {
+            console.log(data);
+            if(data === "ok"){
+                window.location.href = "./index.php";
+            }
+        })
+
+        email.value = "";
+        password.value = "";
     }
-    else if(last_name.value.length > 20){
-        const error_message = document.querySelector("#name-error")
-        error_message.textContent = "First and Last name must contain a maximum of 20 characters";
-        error_message.style.display = "block";
-        last_name.style.border = "1px solid red";
-
-        return;
-    }
-
-    //Email validation
-    const email_regex = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,3}$/;
-    
-    if(!(email_regex.test(email.value))){
-        const error_message = document.querySelector("#email-error")
-        error_message.textContent = "Please insert a valid email";
-        error_message.style.display = "block";
-        email.style.border = "1px solid red";
-
-        return;
-    }
-
-    //Password validation
-    const u_case = /[A-Z]/
-    const l_case = /[a-z]/
-    const digit = /[0-9]/
-    const special_chars = /[-/\\^$*+?#@.()|[\]{}]/
-
-    if(password.value.length < 8){
-        const error_message = document.querySelector("#password-error")
-        error_message.textContent = "The password must contain at least 8 characters";
-        error_message.style.display = "block";
-        password.style.border = "1px solid red";
-
-        return;
-    }
-
-    else if(!u_case.test(password.value)){
-        const error_message = document.querySelector("#password-error")
-        error_message.textContent = "The password must contain at least 1 upper character";
-        error_message.style.display = "block";
-        password.style.border = "1px solid red";
-
-        return;
-    }
-
-    else if(!l_case.test(password.value)){
-        const error_message = document.querySelector("#password-error")
-        error_message.textContent = "The password must contain at least 1 lower character";
-        error_message.style.display = "block";
-        password.style.border = "1px solid red";
-
-        return;
-    }
-
-    else if(!digit.test(password.value)){
-        const error_message = document.querySelector("#password-error")
-        error_message.textContent = "The password must contain at least 1 digit";
-        error_message.style.display = "block";
-        password.style.border = "1px solid red";
-
-        return;
-    }
-
-    else if(!special_chars.test(password.value)){
-        const error_message = document.querySelector("#password-error")
-        error_message.textContent = "The password must contain at least 1 special character";
-        error_message.style.display = "block";
-        password.style.border = "1px solid red";
-
-        return;
-    }
-
-    fetch("account-creation.php", {
-        method: "POST",
-        body: new FormData(document.querySelector("#account-form"))
-    })
-
-    first_name.value = "";
-    last_name.value = "";
-    email.value = "";
-    password.value = "";
 })
+
+//Cleaning the errors when the user starts typing again
+email.addEventListener("input", function(){
+    const error_message = document.querySelector("#email-error");
+    error_message.textContent = "";
+    error_message.style.display = "none";
+    email.style.borderColor = "";
+});
+
+password.addEventListener("input", function(){
+    const error_message = document.querySelector("#password-error");
+    error_message.textContent = "";
+    error_message.style.display = "none";
+    password.style.border = "";
+});

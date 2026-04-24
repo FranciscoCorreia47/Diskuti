@@ -7,9 +7,10 @@
         $email = $_POST["email"];
         $password = $_POST["password"];
 
-        $stmt = $connection->prepare("INSERT INTO users(first_name, last_name, email, password) VALUES(?, ?, ?, ?);");
+        $sql = $connection->prepare("INSERT INTO users(first_name, last_name, email, password) VALUES(?, ?, ?, ?);");
 
-        $stmt->bind_param("ssss", $first_name, $last_name, $email, $password);
-        $stmt->execute();
+        $sql->bind_param("ssss", $first_name, $last_name, $email, $password);
+        $sql->execute();
     }
+
 ?>

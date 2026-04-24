@@ -23,7 +23,7 @@
             <div class="area-banner">
                 <img src="./resources/logo.png" alt="">
                 <h1>Create an Acount</h1>
-                <span class="external-link">Already have an account? <a href="./login.html">Log In</a></span>
+                <span class="external-link">Already have an account? <a href="./login.php" id="redirect">Log In</a></span>
             </div>
             <div class="area-form">                
                 <form action="#" id="account-form"> 
@@ -52,6 +52,6 @@
         </section>
     </main>
 
-    <script src="./scripts/login.js"></script>
+    <script src="./scripts/account-creation.js"></script>
 </body>
 </html>
