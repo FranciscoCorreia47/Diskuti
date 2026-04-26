@@ -40,7 +40,7 @@ login_btn.addEventListener("click", function(){
                 window.location.href = "./index.php";
             }
             else{
-                const form_area = document.querySelector(".area-form");
+                const body = document.querySelector("body");
                 const login_error = document.createElement("div");
                 const error_text = document.createElement("span");
                 const error_symbol = document.createElement("span");
@@ -52,7 +52,7 @@ login_btn.addEventListener("click", function(){
 
                 login_error.appendChild(error_symbol);
                 login_error.appendChild(error_text);
-                form_area.prepend(login_error);
+                body.prepend(login_error);
             }
         })
 
