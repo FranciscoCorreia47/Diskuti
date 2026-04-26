@@ -25,9 +25,6 @@ const password = document.querySelector("#password");
 
 
 login_btn.addEventListener("click", function(){
-    console.log("botão clicado");
-    console.log("email:", email.value);
-    console.log("password:", password.value);
     if(email.value != "" && password.value != ""){
         fetch("../backend/user-login.php", {
             method: "POST",
