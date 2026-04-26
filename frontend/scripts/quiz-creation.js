@@ -268,8 +268,6 @@ publish_button.addEventListener("click", function(){
       console.error("Network or parsing error:", error);
     }
   }
-
-  console.log(quiz_json);
   
   publish_quiz();
   
