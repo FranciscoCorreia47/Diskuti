@@ -1,5 +1,6 @@
 <?php
   session_start();
+
   if((!isset($_SESSION["email"])) || (!isset($_SESSION["password"]))){
     unset($_SESSION["email"]);
     unset($_SESSION["password"]);
@@ -87,6 +88,7 @@
     </section>
     <section class="foot">Footer</section>
   </main>
-  <script src="scripts/main.js"></script>
+  <script src="./scripts/trending-quizzes.js"></script>
+  <script src="./scripts/main.js"></script>
 </body>
 </html>
