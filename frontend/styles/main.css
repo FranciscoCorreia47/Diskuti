@@ -104,8 +104,29 @@ main {
   gap: 1em;
 }
 
+.item-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75vh;
+  margin-bottom: 2.5vh;
+}
+
+.name-span {
+  font-size: 1.2rem;
+  color: #31e0b1;
+  font-weight: bold;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.quiz-details {
+  font-size: 0.8rem;
+  color: #aaa;
+}
+
 .feed-item {
-  background-color: #f1f1f1;
+  width: 20vw;
+  height: 25vh;
   border: 2px solid #31e0b1;
   border-radius: 1.5em;
   transition: all 0.5s ease;

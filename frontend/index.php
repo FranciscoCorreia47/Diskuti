@@ -78,12 +78,6 @@
     <section class="feed">
       <h1>Trending Quizzes</h1>
       <div class="feed-wrapper">
-        <div class="feed-item"></div>
-        <div class="feed-item"></div>
-        <div class="feed-item"></div>
-        <div class="feed-item"></div>
-        <div class="feed-item"></div>
-        <div class="feed-item"></div>
       </div>
     </section>
     <section class="foot">Footer</section>
