@@ -13,7 +13,7 @@
     <section class="top-bar horizontal">
       <ul class="horizontal top-menu">
         <li>
-          <a href="./index.html"><img src="./resources/logo.png" alt="Diskuti's logo"></a>
+          <a href="./index.php"><img src="./resources/logo.png" alt="Diskuti's logo"></a>
         </li>
         <li>
           <h1>Quizz Name</h1>

@@ -240,10 +240,9 @@ publish_button.addEventListener("click", function(){
     for (let q of question_options.querySelectorAll("input")){
       quiz_json.questions[quiz_json.questions.length - 1].options.push({
         "text": q.value,
-        "correct": q.classList.contains("correct"),
+        "correct": q.classList.contains("correct") ? 1 : 0,
       });
     }
-    
   }
 
   async function publish_quiz() {
@@ -268,6 +267,18 @@ publish_button.addEventListener("click", function(){
       console.error("Network or parsing error:", error);
     }
   }
+
+  let cookies = document.cookie.split(";"); // Gets cookies and splits them per cookie
+                                            // Each cookie is composed of cookiename=value; cookiename2=value2; etc.
+  console.log("All cookies:", document.cookie);
+  cookies.forEach(c =>{
+    let pair = c.split("="); // Makes the pair being [0]=cookiename && [1]=value
+    console.log("Cookie pair:", pair);
+    if (pair[0].trim() == 'usremail'){
+      console.log("Found usremail, value:", decodeURIComponent(pair[1]));
+      quiz_json.owner = decodeURIComponent(pair[1]);
+    }
+  });
   
   publish_quiz();
   
