@@ -39,13 +39,16 @@
           <span class="item-txt">Radio</span>
         </li>
         <li id="section">
-          <img src="./resources/section.png" alt="Section">
-          <span class="item-txt">New Section</span>
+          <label for="imageInput" class="upload-label">
+            <img src="./resources/upload.png" id="preview" alt="Upload Quiz Image">
+            <span class="item-txt">Upload Quiz Image</span>
+          </label>
+          <input type="file" id="imageInput" accept="image/*" hidden>
         </li>
       </ul>
     </section>
     <section class="preview-area">
-      <div class="quiz-name">
+      <div class="quiz-name preview">
         <h1></h1>
       </div>
     </section>

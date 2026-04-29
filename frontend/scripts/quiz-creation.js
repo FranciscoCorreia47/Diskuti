@@ -211,6 +211,29 @@ checkbox_button.addEventListener("click", function(){
   });
 });
 
+/* 
+ * 
+ * IMAGE UPLOAD LOGIC
+ * 
+ */
+
+const input = document.getElementById('imageInput');
+const preview = document.querySelector('.preview');
+
+input.addEventListener('change', () => {
+  const file = input.files[0];
+  if (!file) return;
+
+  const url = URL.createObjectURL(file);
+  preview.style.backgroundImage = `url(${url})`;
+});
+
+/*
+ * 
+ *  END OF IMAGE UPLOAD LOGIC
+ *  
+ */
+
 const publish_button = document.querySelector(".publish");
 
 publish_button.addEventListener("click", function(){
