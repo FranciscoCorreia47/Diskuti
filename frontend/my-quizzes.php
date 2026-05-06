@@ -34,33 +34,12 @@
             <div class="quizzes-area">
                 <h2>Latest</h2>
                 <div class="quizzes-list">
-                    <div class="quiz-box">
-                        <div class="quiz"></div>
-                        <h3>Publicado em <span></span></h3>
-                    </div>
-                    <div class="quiz-box">
-                        <div class="quiz"></div>
-                        <h3>Publicado em <span></span></h3>
-                    </div>
-                    <div class="quiz-box">
-                        <div class="quiz"></div>
-                        <h3>Publicado em <span></span></h3>
-                    </div>
-                    <div class="quiz-box">
-                        <div class="quiz"></div>
-                        <h3>Publicado em <span></span></h3>
-                    </div>
-                    <div class="quiz-box">
-                        <div class="quiz"></div>
-                        <h3>Publicado em <span></span></h3>
-                    </div>
-                    <div class="quiz-box">
-                        <div class="quiz"></div>
-                        <h3>Publicado em <span></span></h3>
-                    </div>
+                    
                 </div>
             </div>
         </section>
     </main>
+
+    <script src="./scripts/get-quizzes.js"></script>
 </body>
 </html>

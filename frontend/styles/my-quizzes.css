@@ -6,7 +6,7 @@
 
 .quizzes-section {
     width: 90vw;
-    max-height: 98vh;
+    height: 98vh;
     overflow-y: auto;
     border: 1px solid #31e0b1;
     border-radius: 24px 24px 0 0;
@@ -26,7 +26,7 @@
 .quizzes-area {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -40,7 +40,6 @@
 .quiz-box {
     display: flex;
     flex-direction: column;
-    font-size: 0.9rem;
     gap: 0.25rem;
 }
 
@@ -52,14 +51,17 @@
     border-radius: 16px;
 }
 
-.logo img {
-    width: 25rem;
+.name-span {
+  font-size: 1.8rem;
+  color: #31e0b1;
+  font-weight: bold;
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.quizzes-section h1 {
-    font-size: 2.5rem;
-    text-align: center;
-    color: #202020;
+.quiz-details {
+  font-size: 1.5rem;
+  color: #202020;
 }
 
 .quizzes-section input {
