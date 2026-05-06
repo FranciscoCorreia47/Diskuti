@@ -48,9 +48,7 @@
       </ul>
     </section>
     <section class="preview-area">
-      <div class="quiz-name preview">
-        <h1></h1>
-      </div>
+      <div class="preview"></div>
     </section>
   </main>
   <script src="./scripts/quiz-creation.js"></script>

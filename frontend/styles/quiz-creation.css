@@ -232,3 +232,8 @@ a {
 .upload-label:hover {
   cursor: pointer;
 }
+
+.preview {
+  height: 360px;
+  width: 640px;
+}

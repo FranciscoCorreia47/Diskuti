@@ -7,14 +7,9 @@ let quiz_name = new Object;
 
 if (data){
   quiz_name = JSON.parse(data);
-  
-  const title = document.querySelector(".preview-area>.quiz-name>h1");
-  title.textContent = quiz_name.name;
 
   const header_title = document.querySelector(".top-menu>li>h1");
   header_title.textContent = quiz_name.name;
-  
-  localStorage.removeItem("quiz-name");
 }
 
 for (let i of menu_items){
@@ -220,12 +215,16 @@ checkbox_button.addEventListener("click", function(){
 const input = document.getElementById('imageInput');
 const preview = document.querySelector('.preview');
 
+let image = null;
+
 input.addEventListener('change', () => {
   const file = input.files[0];
   if (!file) return;
+  image = file;
 
   const url = URL.createObjectURL(file);
   preview.style.backgroundImage = `url(${url})`;
+  const quiz_name = document.querySelector(".preview-area>h1");
 });
 
 /*
@@ -244,6 +243,7 @@ publish_button.addEventListener("click", function(){
       "name": quiz_name.name, 
       "questions": new Array,
   };
+
   for (let question of quiz_questions){
     let question_type = "";
 
@@ -270,21 +270,22 @@ publish_button.addEventListener("click", function(){
 
   async function publish_quiz() {
     try {
-      const response = await fetch("../backend/quiz-publish.php", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(quiz_json),
-      });
+      const formData = new FormData();
+      const imageIn = document.querySelector("#imageInput");
+      const image = imageIn.files[0];
+      formData.append('banner', image);
+      formData.append('data', JSON.stringify(quiz_json));
 
-      const data = await response.json();
-
-      if (response.ok) {
-        console.log("Success:", data.message); 
-      } else {
-        console.error("Server Error:", data.message);
-      }
+      fetch('../backend/quiz-publish.php', {
+        method: 'POST',
+        body: formData
+      })
+      .then(res => {
+        if (!res.ok)
+          throw new Error(`Backend gave status ${res.status }`)
+        return res.json();
+      })
+      .then(data => console.log(data));
 
     } catch (error) {
       console.error("Network or parsing error:", error);
@@ -293,12 +294,9 @@ publish_button.addEventListener("click", function(){
 
   let cookies = document.cookie.split(";"); // Gets cookies and splits them per cookie
                                             // Each cookie is composed of cookiename=value; cookiename2=value2; etc.
-  console.log("All cookies:", document.cookie);
   cookies.forEach(c =>{
     let pair = c.split("="); // Makes the pair being [0]=cookiename && [1]=value
-    console.log("Cookie pair:", pair);
     if (pair[0].trim() == 'usremail'){
-      console.log("Found usremail, value:", decodeURIComponent(pair[1]));
       quiz_json.owner = decodeURIComponent(pair[1]);
     }
   });
