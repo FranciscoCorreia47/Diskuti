@@ -14,8 +14,8 @@ overlay.addEventListener("click", function(event){
 });
 
 proceed.addEventListener("click", function(){
-  const quiz_name = quiz_input.value;
+  const quiz_name = quiz_input.value.trim();
 
   localStorage.setItem("quiz-name", JSON.stringify({name: quiz_name}));
-  window.location.href = "quiz-creation.html";
+  window.location.href = "quiz-creation.php";
 });

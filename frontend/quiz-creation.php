@@ -13,7 +13,7 @@
     <section class="top-bar horizontal">
       <ul class="horizontal top-menu">
         <li>
-          <a href="./index.html"><img src="./resources/logo.png" alt="Diskuti's logo"></a>
+          <a href="./index.php"><img src="./resources/logo.png" alt="Diskuti's logo"></a>
         </li>
         <li>
           <h1>Quizz Name</h1>
@@ -39,15 +39,16 @@
           <span class="item-txt">Radio</span>
         </li>
         <li id="section">
-          <img src="./resources/section.png" alt="Section">
-          <span class="item-txt">New Section</span>
+          <label for="imageInput" class="upload-label">
+            <img src="./resources/upload.png" id="preview" alt="Upload Quiz Image">
+            <span class="item-txt">Upload Quiz Image</span>
+          </label>
+          <input type="file" id="imageInput" accept="image/*" hidden>
         </li>
       </ul>
     </section>
     <section class="preview-area">
-      <div class="quiz-name">
-        <h1></h1>
-      </div>
+      <div class="preview"></div>
     </section>
   </main>
   <script src="./scripts/quiz-creation.js"></script>

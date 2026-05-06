@@ -221,3 +221,19 @@ a {
 .trash:hover {
   cursor: pointer;
 }
+
+.upload-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5em;
+}
+
+.upload-label:hover {
+  cursor: pointer;
+}
+
+.preview {
+  height: 360px;
+  width: 640px;
+}

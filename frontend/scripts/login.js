@@ -35,11 +35,19 @@ login_btn.addEventListener("click", function(){
         })
         .then(response => response.text())
         .then(data => {
-            console.log(data);
-            if(data === "ok"){
+            console.log("Login response:", data);
+            if(data.trim() === "ok"){
+                const cookieValue = email.value.trim();
+                console.log("Setting cookie with:", cookieValue);
+                if (cookieValue) {
+                    document.cookie = `usremail=${encodeURIComponent(cookieValue)}; path=/; max-age=86400; SameSite=Strict`;
+                } else {
+                    console.error("Email is empty, cannot set cookie");
+                }
                 window.location.href = "./index.php";
-            }
-            else{
+                email.value = "";
+                password.value = "";
+            } else {
                 const form_area = document.querySelector(".area-form");
                 const login_error = document.createElement("div");
                 const error_text = document.createElement("span");
@@ -55,9 +63,9 @@ login_btn.addEventListener("click", function(){
                 form_area.prepend(login_error);
             }
         })
-
-        email.value = "";
-        password.value = "";
+        .catch(error => {
+            console.error("Fetch error:", error);
+        });
     }
 })
 
