@@ -6,10 +6,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="./styles/my-quizzes.css">
+    <script src="https://kit.fontawesome.com/c818a7c46a.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="./styles/reset.css">
     <link rel="stylesheet" type="text/css" href="./styles/styles.css">
     <link rel="stylesheet" type="text/css" href="./styles/main.css">
+    <link rel="stylesheet" type="text/css" href="./styles/my-quizzes.css">
     <title>Diskuti | My Quizzes</title>
 </head>
 <body>
@@ -30,11 +31,13 @@
                 <img src="./resources/logo.png" alt="Diskuti's logo">
             </div>
             <h1>My Quizzes</h1>
-            <input type="text" name="search" id="search-bar" placeholder="Search for a specific quiz">
+            <div class="search-box">
+                <input type="text" name="search" id="search-bar" placeholder="Search for a specific quiz">
+                <span class="fa-solid fa-magnifying-glass search-btn" id="search-btn"></span>
+            </div>
             <div class="quizzes-area">
                 <h2>Latest</h2>
                 <div class="quizzes-list">
-                    
                 </div>
             </div>
         </section>
