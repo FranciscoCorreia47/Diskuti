@@ -22,6 +22,7 @@
   <link rel="stylesheet" type="text/css" href="./styles/reset.css">
   <link rel="stylesheet" type="text/css" href="./styles/styles.css">
   <link rel="stylesheet" type="text/css" href="./styles/main.css">
+  <script src="https://js.pusher.com/8.0.1/pusher.min.js"></script>
   <title>Diskuti | Home</title>
 </head>
 <body>
@@ -56,23 +57,15 @@
       <div class="box">
         <h1>Chat</h1>
         <div class="separator"></div>
-        <ul class="chat-list">
-          <li class="chat-contact">
-            <div class="contact-picture"></div>
-            <span class="contact-name">Ricardo</span>
-          </li>
-          <div class="separator"></div>
-          <li class="chat-contact">
-            <div class="contact-picture"></div>
-            <span class="contact-name">Alguém</span>
-          </li>
-          <div class="separator"></div>
-          <li class="chat-contact">
-            <div class="contact-picture"></div>
-            <span class="contact-name">User 505</span>
-          </li>
-          <div class="separator"></div>
-        </ul>
+        <div class="chat-area">
+          <div class="message sent"><span class="message-text">Hello! I'm Francisco</span></div>
+          <div class="message sent"><span class="message-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio consectetur, atque nesciunt ipsum dolor amet laboriosam, rem est, magnam error officia et id! Ut ullam obcaecati non dicta aliquam ipsa.</span></div>
+          <div class="message recieved"><span class="message-text">Hi Francisco! Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto optio error hic obcaecati, iusto dignissimos explicabo voluptas provident veniam dolores, rerum earum facilis illum voluptate officiis sunt ipsa voluptates eos.</span></div>
+        </div>
+        <div class="write-box">
+          <input type="text" id="message-input" placeholder="Write a message...">
+          <button class="send-message"><svg  xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 24 24" ><path d="m2.6 10.42 7.64 3.34 3.34 7.64c.16.37.52.6.92.6h.05a1 1 0 0 0 .9-.69l5.5-17c.12-.36.02-.75-.24-1.01a.98.98 0 0 0-1.01-.24L2.69 8.55c-.4.13-.67.49-.69.9-.02.42.22.8.6.97m15.85-4.86-4.09 12.63-2.44-5.59c-.1-.23-.28-.41-.52-.52L5.81 9.64l12.63-4.09Z"></path></svg></button>
+        </div>
       </div>
     </section>
     <section class="feed">
@@ -84,5 +77,6 @@
   </main>
   <script src="./scripts/trending-quizzes.js"></script>
   <script src="./scripts/main.js"></script>
+  <script src="./scripts/chat.js"></script>
 </body>
 </html>
