@@ -45,7 +45,7 @@
       </div>
     </section>
     <section class="logo">
-      <img src="./resources/logo.png" alt="Logo">
+      <img src="./resources/logo.svg" alt="Logo">
     </section>
     <section class="search">
       <div class="bar">
