@@ -28,7 +28,7 @@
         </section>
         <section class="quizzes-section">
             <div class="logo">
-                <img src="./resources/logo.png" alt="Diskuti's logo">
+                <img src="./resources/diskuti-logo.png" alt="Diskuti's logo">
             </div>
             <h1>My Quizzes</h1>
             <div class="search-box">

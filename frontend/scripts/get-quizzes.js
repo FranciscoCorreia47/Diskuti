@@ -25,6 +25,7 @@ fetch("../backend/get-quizzes.php")
 
             for(quiz of data){
                 if(quiz["name"].includes(search_input.value.trim())){
+                    const id = quiz["id"];
                     const name = quiz["name"];
                     const creation_date = quiz["creation_date"];
                     const banner = quiz["banner"];
@@ -64,6 +65,7 @@ fetch("../backend/get-quizzes.php")
             search_box.appendChild(new_search_btn);
 
             for(quiz of data){
+                const id = quiz["id"];
                 const name = quiz["name"];
                 const creation_date = quiz["creation_date"];
                 const banner = quiz["banner"];
@@ -93,6 +95,7 @@ fetch("../backend/get-quizzes.php")
     })
 
     for(quiz of data){
+        const id = quiz["id"];
         const name = quiz["name"];
         const creation_date = quiz["creation_date"];
         const banner = quiz["banner"];
