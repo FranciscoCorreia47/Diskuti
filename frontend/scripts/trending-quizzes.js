@@ -4,7 +4,7 @@ fetch("../backend/trending-quizzes.php")
     for(quiz of data){
         const name = quiz["name"];
         const creation_date = quiz["creation_date"];
-        const quiz_banner = quiz["quiz_banner"];
+        const banner = quiz["banner"];
         const user_full_name = quiz["user_full_name"];
 
         const feed_wrapper = document.querySelector(".feed-wrapper");
@@ -13,7 +13,7 @@ fetch("../backend/trending-quizzes.php")
         const name_span = document.createElement("span");
         const quiz_details = document.createElement("span");
 
-        feed_item.style.backgroundImage = `url(${quiz_banner})`;
+        feed_item.style.backgroundImage = `url(${banner})`;
         name_span.textContent = name;
         quiz_details.textContent = `${user_full_name} • ${creation_date}`;
 
