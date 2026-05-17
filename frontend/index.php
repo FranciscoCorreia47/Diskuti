@@ -1,10 +1,10 @@
 <?php
   session_start();
 
-  if((!isset($_SESSION["email"])) || (!isset($_SESSION["password"]))){
+  if((!isset($_SESSION["email"]))){
     unset($_SESSION["email"]);
-    unset($_SESSION["password"]);
     header("location: login.php");
+    exit();
   }
 
   $logged_in = ["email"];

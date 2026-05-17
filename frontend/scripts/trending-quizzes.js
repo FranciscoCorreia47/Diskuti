@@ -29,3 +29,5 @@ fetch("../backend/trending-quizzes.php")
         feed_wrapper.appendChild(item_box);
     }
 })
+
+window.location.href = "quiz.php?id=" + quiz_id;
