@@ -14,7 +14,7 @@
         $quiz_data->name = $quiz["name"];
         $quiz_data->user = $quiz["user_full_name"];
 
-        $questions_sql = $connection->prepare("SELECT id, text FROM questions WHERE questions.quiz_id = ?;");
+        $questions_sql = $connection->prepare("SELECT id, type, text FROM questions WHERE questions.quiz_id = ?;");
         $questions_sql->bind_param("s", $quiz["id"]);
         $questions_sql->execute();
         $questions_result = $questions_sql->get_result();
@@ -22,23 +22,35 @@
         $i = 1;
         $quiz_data->questions = new stdClass();
         while($question = $questions_result->fetch_assoc()){
+            $quiz_data->questions->{"question" . $i} = new stdClass();
             $quiz_data->questions->{"question" . $i}->text = $question["text"];
-            $i++;
+            $quiz_data->questions->{"question" . $i}->type = $question["type"];
 
-            $options_sql = $connection->prepare("SELECT text, correct FROM options WHERE options.question_id = ?;");
+            $options_sql = $connection->prepare("SELECT text, correct FROM options WHERE options.qstn_id = ?;");
             $options_sql->bind_param("s", $question["id"]);
             $options_sql->execute();
             $options_result = $options_sql->get_result();
 
             $j = 1;
-            $quiz_data->questions->{"question" . ($i-1)}->options = new stdClass();
+            $quiz_data->questions->{"question" . ($i)}->options = new stdClass();
             while($option = $options_result->fetch_assoc()){
-                $quiz_data->questions->{"question" . ($i-1)}->options->{"option" . $j}->text = $option["text"];
-                $quiz_data->questions->{"question" . ($i-1)}->options->{"option" . $j}->correct = $option["correct"];
+                $quiz_data->questions->{"question" . $i}->options->{"option" . $j} = new stdClass();
+                $quiz_data->questions->{"question" . $i}->options->{"option" . $j}->text = $option["text"];
+                $quiz_data->questions->{"question" . $i}->options->{"option" . $j}->correct = $option["correct"];
                 $j++;
             }
+
+            $i++;
         }
 
         echo json_encode($quiz_data);
+    }
+
+    if(isset($_GET["submission"])){
+        $quiz_id = $_GET["quiz-id"];
+
+        $sql = $connection->prepare("UPDATE quizzes SET submit_count = submit_count + 1 WHERE id = ?;");
+        $sql->bind_param("s", $quiz_id);
+        $sql->execute();
     }
 ?>

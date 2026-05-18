@@ -19,32 +19,14 @@
           <h1 id="quiz-name">Quizz Name</h1>
         </li>
         <li class="buttons">
-          <button id="share">Return</button>
-          <button id="publish">Submit</button>
+          <button id="return">Return</button>
+          <button id="submit">Submit</button>
         </li>
       </ul>
     </section>
-    <section class="questions-section">
-      <div class="questions-div">
-        <h1 class="question">Questão 1</h1>
-        <div class="options-div">
-          <label><input type="checkbox" class="option" name="question1">Opcao 1</label>
-          <label><input type="checkbox" class="option" name="question1">Opcao 1</label>
-          <label><input type="checkbox" class="option" name="question1">Opcao 1</label>
-          <label><input type="checkbox" class="option" name="question1">Opcao 1</label>
-        </div>
-      </div>
-      <div class="questions-div">
-        <h1 class="question">Questão 2</h1>
-        <div class="options-div">
-          <label><input type="radio" class="option" name="question2">Opcao 2</label>
-          <label><input type="radio" class="option" name="question2">Opcao 2</label>
-          <label><input type="radio" class="option" name="question2">Opcao 2</label>
-          <label><input type="radio" class="option" name="question2">Opcao 2</label>
-        </div>
-      </div>
-    </section>
+    <section class="questions-section"></section>
+    <div id="result-box" class="result-box" style="display:none;"></div>
 
-    <!--<script src="./scripts/entire-quiz.js"></script>-->
+    <script src="./scripts/entire-quiz.js"></script>
 </body>
 </html>

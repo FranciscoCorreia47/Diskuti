@@ -17,6 +17,7 @@
         }
         else{
             $_SESSION["email"] = $email;
+            setcookie("usremail", $email, time() + 3600, "/");
             echo "ok";
         }
     }

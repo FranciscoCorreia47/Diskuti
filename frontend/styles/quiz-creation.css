@@ -14,6 +14,8 @@ main {
   background-color: #e03160;
   width: 100%;
   height: 6em;
+  position: sticky;
+  top: 0;
 }
 
 .side-bar {

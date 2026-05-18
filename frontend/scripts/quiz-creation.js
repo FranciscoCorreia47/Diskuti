@@ -263,7 +263,7 @@ publish_button.addEventListener("click", function(){
     for (let q of question_options.querySelectorAll("input")){
       quiz_json.questions[quiz_json.questions.length - 1].options.push({
         "text": q.value,
-        "correct": q.classList.contains("correct") ? 1 : 0,
+        "correct": q.parentElement.parentElement.classList.contains("correct") ? 1 : 0,
       });
     }
   }

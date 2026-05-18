@@ -14,6 +14,7 @@ fetch("../backend/trending-quizzes.php")
         const quiz_details = document.createElement("span");
 
         feed_item.style.backgroundImage = `url(${banner})`;
+        feed_item.setAttribute('quiz-id', `${quiz["id"]}`);
         name_span.textContent = name;
         quiz_details.textContent = `${user_full_name} • ${creation_date}`;
 
@@ -28,6 +29,12 @@ fetch("../backend/trending-quizzes.php")
 
         feed_wrapper.appendChild(item_box);
     }
-})
 
-window.location.href = "quiz.php?id=" + quiz_id;
+    const quizzes = document.querySelectorAll(".feed-item");
+
+    for(quiz of quizzes){
+        quiz.addEventListener("click", function(event){
+            window.location.href = "./quiz-submission.php?id=" + event.target.getAttribute('quiz-id');;
+        })
+    }
+})
