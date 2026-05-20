@@ -185,6 +185,28 @@ fetch(`../backend/entire-quizzes.php?quiz-id=${quiz_id}`)
 
         submit.disabled = true;
 
+        const comment_box = document.querySelector("#comment-box");
+        comment_box.style.display = "flex";
+
+        const comment_message = document.createElement("span");
+        comment_message.textContent = "Leave your comment";
+
+        const input_div = document.createElement("div");
+        const comment_input = document.createElement("input");
+        const send_comment = document.createElement("span");
+
+        comment_message.classList.add("comment-message");
+        input_div.classList.add("input-div");
+        comment_input.classList.add("comment-input");
+        send_comment.classList.add("fa-regular");
+        send_comment.classList.add("fa-paper-plane");
+        
+        input_div.appendChild(comment_input);
+        input_div.appendChild(send_comment);
+
+        comment_box.appendChild(comment_message);
+        comment_box.appendChild(input_div);
+
         fetch(`../backend/entire-quizzes.php?quiz-id=${quiz_id}&submission=1`);
     })
 

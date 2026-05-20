@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./styles/styles.css">
     <link rel="stylesheet" href="./styles/quiz-creation.css">
     <link rel="stylesheet" href="./styles/quiz-submission.css">
+    <script src="https://kit.fontawesome.com/c818a7c46a.js" crossorigin="anonymous"></script>
     <title>Diskuti | Quiz Submission</title>
 </head>
 <body>
@@ -26,6 +27,7 @@
     </section>
     <section class="questions-section"></section>
     <div id="result-box" class="result-box" style="display:none;"></div>
+    <div id="comment-box" class="comment-box" style="display:none;"></div>
 
     <script src="./scripts/entire-quiz.js"></script>
 </body>
