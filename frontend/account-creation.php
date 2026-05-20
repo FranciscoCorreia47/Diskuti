@@ -21,7 +21,7 @@
         
         <section class="area vertical">
             <div class="area-banner">
-                <img src="./resources/logo.png" alt="">
+                <img src="./resources/logo.svg" alt="Diskuti's Logo">
                 <h1>Create an Acount</h1>
                 <span class="external-link">Already have an account? <a href="./login.php" id="redirect">Log In</a></span>
             </div>

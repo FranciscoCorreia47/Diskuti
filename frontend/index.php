@@ -10,8 +10,6 @@
   $logged_in = ["email"];
 ?>
 
-
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -55,12 +53,9 @@
     </section>
     <section class="chatbar vertical">
       <div class="box">
-        <h1>Chat</h1>
+        <h1 class="chat-tittle">Chat</h1>
         <div class="separator"></div>
         <div class="chat-area">
-          <div class="message sent"><span class="message-text">Hello! I'm Francisco</span></div>
-          <div class="message sent"><span class="message-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio consectetur, atque nesciunt ipsum dolor amet laboriosam, rem est, magnam error officia et id! Ut ullam obcaecati non dicta aliquam ipsa.</span></div>
-          <div class="message recieved"><span class="message-text">Hi Francisco! Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto optio error hic obcaecati, iusto dignissimos explicabo voluptas provident veniam dolores, rerum earum facilis illum voluptate officiis sunt ipsa voluptates eos.</span></div>
         </div>
         <div class="write-box">
           <input type="text" id="message-input" placeholder="Write a message...">

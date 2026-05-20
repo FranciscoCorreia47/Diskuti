@@ -3,7 +3,7 @@
 require_once('config.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-  if(!isset($_POST['chat_id']) || !isset($_POST['user'])){
+  if(!isset($_POST['chat_id']) || !isset($_POST['user_email'])){
     http_response_code(400);
     echo json_encode(['status' => 'error', 'message' => "Invalid body"]);
     exit;
@@ -92,6 +92,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 } else {
   http_response_code(405);
-  echo json_encode(['status' => 'error', 'message' => "Can't use GET"]);
+  echo json_encode(['status' => 'error', 'message' => "Invalid method"]);
   exit;
 }

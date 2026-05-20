@@ -4,7 +4,7 @@ let usr_email = '';
 let cookies = document.cookie.split(';');
 let chatId = 1;
 
-cookies.forEach(c =>{
+cookies.forEach(c => {
     let pair = c.split("="); // Makes the pair being [0]=cookiename && [1]=value
     if (pair[0].trim() == 'usremail'){
       usr_email = decodeURIComponent(pair[1]);
@@ -22,19 +22,13 @@ function chatConnect(chatId) {
 
     // Listen for the event 'new-message'
     chat_channel.bind('new-message', function(data) {
-        renderMessage(data); // Rendering the message in the page
+        renderMessage({
+          sent: (usr_email == data.user_email),
+          text: data.text,
+          send_date: data.sent_date
+        }); // Rendering the message in the page
     });
 }
-
-/**
- * Message JSON
- * 
- * {
- *  'sent': true | false,
- *  'text': string,
- *  'send_date': MySQL DATETIME
- * }
- */
 
 function renderMessage(data){
   const chat_area = document.querySelector('.chat-area');
@@ -54,7 +48,7 @@ function renderMessage(data){
   const send_date_span = document.createElement('span');
   send_date_span.classList.add('date');
 
-  send_date_span.textContent = new Date(data.send_date).toLocaleString();
+  send_date_span.textContent = new Date(data.sent_date).toLocaleString();
 
   message_div.appendChild(message_text);
   message_div.appendChild(send_date_span);
@@ -70,7 +64,7 @@ async function loadMessages(chatId) {
     headers: 'Content-type: application/json',
     body: JSON.stringify({
       chat_id: chatId,
-      user: usr_email
+      user_email: usr_email
     })
   });
 
@@ -89,18 +83,23 @@ async function loadMessages(chatId) {
 const send_btn = document.querySelector('.send-message');
 
 send_btn.addEventListener('click', async () => {
-  const text = document.querySelector('.message-input').value;
+  let text = document.querySelector('#message-input').value;
 
-  await fetch('send-message.php', {
-    method: 'POST',
-    body: JSON.stringify({
-      chat_id: chatId,
-      text: text.trim(),
-      send_date: new Date().toLocaleString(),
-      sent: true
-    })
-  });
-  text = '';
+  if(text.trim().length){
+    let data = await fetch('send-message.php', {
+      method: 'POST',
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: text.trim(),
+        sent_date: new Date().toLocaleString(),
+        user_email: usr_email
+      })
+    });
+    text = '';
+    data = await data.json();
+    console.log(data);
+  }
+
 
 });
 

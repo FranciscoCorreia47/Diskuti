@@ -23,7 +23,7 @@
     <!--Login Form-->
     <section class="area vertical">
       <div class="area-banner">
-        <img src="resources/logo.png" alt="Diskuti's Logo">
+        <img src="resources/logo.svg" alt="Diskuti's Logo">
         <h1>Welcome Back</h1>
         <h3>Jump back into the discussion!</h3>
       </div>
