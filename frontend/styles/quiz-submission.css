@@ -9,6 +9,7 @@
 }
 
 .questions-div {
+    margin: -2.5vh;
     width: 80%;
     padding: 5%;
     display: flex;
