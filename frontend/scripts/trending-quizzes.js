@@ -34,7 +34,7 @@ fetch("../backend/trending-quizzes.php")
 
     for(quiz of quizzes){
         quiz.addEventListener("click", function(event){
-            window.location.href = "./quiz-submission.php?id=" + event.target.getAttribute('quiz-id');;
+            window.location.href = `./quiz-submission.php?quiz-id=${event.target.getAttribute('quiz-id')}&user-id=${document.querySelector(".feed-wrapper").dataset.userId}`;
         })
     }
 })

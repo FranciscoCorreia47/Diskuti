@@ -77,7 +77,7 @@
     </section>
     <section class="feed">
       <h1>Trending Quizzes</h1>
-      <div class="feed-wrapper">
+      <div class="feed-wrapper" data-user-id="<?php echo $_SESSION['id'] ?>">
       </div>
     </section>
     <section class="foot">Footer</section>

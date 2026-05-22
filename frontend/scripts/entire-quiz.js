@@ -1,12 +1,13 @@
 const params = new URLSearchParams(window.location.search);
-const quiz_id = params.get("id");
+const quiz_id = params.get("quiz-id");
+const user_id = params.get("user-id");
 
 fetch(`../backend/entire-quizzes.php?quiz-id=${quiz_id}`)
 .then(response => response.json())
 .then(data => {
     const questions_section = document.querySelector(".questions-section");
     const quiz_name = document.querySelector("#quiz-name");
-    quiz_name.textContent = `${data["user"]} - ${data["name"]}`;
+    quiz_name.textContent = `${data["user_name"]} - ${data["name"]}`;
 
     let i = 1;
 
@@ -197,15 +198,49 @@ fetch(`../backend/entire-quizzes.php?quiz-id=${quiz_id}`)
 
         comment_message.classList.add("comment-message");
         input_div.classList.add("input-div");
+        input_div.id = "input-div";
         comment_input.classList.add("comment-input");
+        comment_input.id = "comment-input";
+        comment_input.maxLength = 1024;
         send_comment.classList.add("fa-regular");
         send_comment.classList.add("fa-paper-plane");
+        send_comment.id = "comment-btn";
         
         input_div.appendChild(comment_input);
         input_div.appendChild(send_comment);
 
         comment_box.appendChild(comment_message);
         comment_box.appendChild(input_div);
+
+        const comment_btn = document.querySelector("#comment-btn");
+        comment_btn.addEventListener("click", function(){
+            const comment_inp = document.querySelector("#comment-input");
+            const comment_text = comment_inp.value;
+
+            if(!(comment_text == "")){
+                const separator = document.createElement("div");
+                separator.classList.add("comment-separator");
+                const comment_div = document.createElement("div");
+                
+                comment_div.textContent = comment_text;
+                comment_div.classList.add("user-comment");
+
+                comment_box.appendChild(separator);
+                comment_box.appendChild(comment_div);
+                comment_inp.disabled = true;
+                comment_inp.value = "";
+
+                const formdata = new FormData();
+                formdata.append("user-comment", `${comment_text}`);
+                formdata.append("user-id", `${user_id}`);
+                formdata.append("quiz-id", `${quiz_id}`);
+
+                fetch("../backend/entire-quizzes.php", {
+                    method: "POST",
+                    body: formdata
+                });
+            }
+        })
 
         fetch(`../backend/entire-quizzes.php?quiz-id=${quiz_id}&submission=1`);
     })

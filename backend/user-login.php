@@ -7,7 +7,7 @@
         $email = $_POST["email"];
         $password = $_POST["password"];
 
-        $sql = $connection->prepare("SELECT * FROM users WHERE email LIKE ? AND password LIKE ?;");
+        $sql = $connection->prepare("SELECT * FROM users WHERE email = ? AND password = ?;");
         $sql->bind_param("ss", $email, $password);
         $sql->execute();
         $result = $sql->get_result();
@@ -16,6 +16,8 @@
             echo "error";
         }
         else{
+            $user = $result->fetch_assoc();
+            $_SESSION["id"] = $user["id"];
             $_SESSION["email"] = $email;
             setcookie("usremail", $email, time() + 3600, "/");
             echo "ok";
