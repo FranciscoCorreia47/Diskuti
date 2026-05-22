@@ -13,7 +13,7 @@ fetch("../backend/trending-quizzes.php")
         const name_span = document.createElement("span");
         const quiz_details = document.createElement("span");
 
-        feed_item.style.backgroundImage = `url(${banner})`;
+        feed_item.style.backgroundImage = `url(../backend/${banner})`;
         name_span.textContent = name;
         quiz_details.textContent = `${user_full_name} • ${creation_date}`;
 

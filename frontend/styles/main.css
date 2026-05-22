@@ -289,6 +289,14 @@ main {
   color: #2f2f2f;
 }
 
+.date{
+  font-size: 0.75em;
+}
+.date-sent {
+  font-size: 0.75em;
+  align-self: flex-end;
+}
+
 .overlay {
   display: none;
   position: fixed;

@@ -35,24 +35,25 @@ function renderMessage(data){
   const message_div = document.createElement('div');
   message_div.classList.add('message');
 
-  if (data.sent)
-    message_div.classList.add('sent');
-  else
-    message_div.classList.add('received');
+  const send_date_span = document.createElement('span');
 
+  if (data.sent){
+    message_div.classList.add('sent');
+    send_date_span.classList.add('date-sent');
+  } else {
+    message_div.classList.add('recieved');
+    send_date_span.classList.add('date');
+  }
   const message_text = document.createElement('span');
   message_text.classList.add('message-text');
 
   message_text.textContent = data.text;
 
-  const send_date_span = document.createElement('span');
-  send_date_span.classList.add('date');
-
-  send_date_span.textContent = new Date(data.sent_date).toLocaleString();
+  send_date_span.textContent = data.send_date;
 
   message_div.appendChild(message_text);
-  message_div.appendChild(send_date_span);
   chat_area.appendChild(message_div);
+  chat_area.appendChild(send_date_span);
 
   chat_area.scrollTop = chat_area.scrollHeight; // Automatic scroll when message appears
 
@@ -61,7 +62,7 @@ function renderMessage(data){
 async function loadMessages(chatId) {
   const res = await fetch('../backend/get-messages.php', {
     method: 'POST',
-    headers: 'Content-type: application/json',
+    headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
       chat_id: chatId,
       user_email: usr_email
@@ -73,7 +74,7 @@ async function loadMessages(chatId) {
   const chatarea = document.querySelector(".chat-area");
   chatarea.innerHTML = ''; // Clean whatever might've been there
 
-  if (messages){
+  if (messages['text'] != ''){
     messages.forEach(m => {
       renderMessage(m);
     });
@@ -86,16 +87,15 @@ send_btn.addEventListener('click', async () => {
   let text = document.querySelector('#message-input').value;
 
   if(text.trim().length){
-    let data = await fetch('send-message.php', {
+    let data = await fetch('../backend/send-message.php', {
       method: 'POST',
       body: JSON.stringify({
         chat_id: chatId,
         text: text.trim(),
-        sent_date: new Date().toLocaleString(),
         user_email: usr_email
       })
     });
-    text = '';
+    document.querySelector('#message-input').value = '';
     data = await data.json();
     console.log(data);
   }

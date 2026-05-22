@@ -4,14 +4,17 @@ require_once('config.php');
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
   
-  if(!isset($_POST['chat_id']) || !isset($_POST['text']) || !isset($_POST['send_date']) || !isset($_POST['user_email'])){
-    http_response_code(405);
-    echo json_encode(['status' => 'error', 'message' => "Invalid body"]);
-    exit;  
+  $json = file_get_contents('php://input');
+  $requestData = json_decode($json, true);
+
+  if(!isset($requestData['chat_id']) || !isset($requestData['text']) || !isset($requestData['user_email'])){
+      http_response_code(405);
+      echo json_encode(['status' => 'error', 'message' => "Invalid body"]);
+      exit;
   }
 
   $sql = $connection->prepare('SELECT id FROM users WHERE email = ?');
-  $sql->bind_param("s", $_POST['user_email']);
+  $sql->bind_param("s", $requestData['user_email']);
   if (!$sql->execute()) {
     http_response_code(500);
     echo json_encode(['status' => 'error', 'message' => 'Internal Server error']);
@@ -29,9 +32,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     }
   }
 
-  $chat_id = $_POST['chat_id'];
+  $chat_id = $requestData['chat_id'];
   $sql = $connection->prepare("SELECT * FROM chat_participants WHERE chat_id = ?;");
-  $sql->bind_param('%s', $chat_id);
+  $sql->bind_param('s', $chat_id);
   if (!$sql->execute()) {
     http_response_code(500);
     echo json_encode(['status' => 'error', 'message' => 'Internal Server error']);
@@ -51,14 +54,16 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     }
   }
 
-  if(!array_search($usr_id, $participants)){
+  if(!in_array($usr_id, $participants)){
     http_response_code(401);
     echo json_encode(['status' => 'error', 'message' => 'User is not a participant of the chat']);
     exit;
   }
 
+  $current_date = date('Y-m-d H:i:s');
+
   $sql = $connection->prepare("INSERT INTO messages(chat_id, user_id, text, sent_date) VALUES (?,?,?,?);");
-  $sql->bind_param("ssss", $_POST['chat_id'], $usr_id, $_POST['text'], $_POST['sent_date']);
+  $sql->bind_param("ssss", $requestData['chat_id'], $usr_id, $requestData['text'], $current_date);
   if (!$sql->execute()) {
     http_response_code(500);
     echo json_encode(['status' => 'error', 'message' => 'Internal Server error']);
@@ -66,7 +71,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
   }
   echo json_encode(['status' => 'success', 'message' => 'ok']);
 
-  require __DIR__ . './vendor/autoload.php';
+  require __DIR__ . '/vendor/autoload.php';
 
   $options = array(
     'cluster' => 'eu',
@@ -80,9 +85,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
   );
 
   $data = array(
-    'message' => $_POST['text'],
-    'user_email' => $_POST['user_email'],
-    'sent_date' => $_POST['sent_date'],
+    'text' => $requestData['text'],
+    'user_email' => $requestData['user_email'],
+    'sent_date' => $current_date,
   );
   $pusher->trigger('chat-'.$chat_id, 'new-message', $data);
 
