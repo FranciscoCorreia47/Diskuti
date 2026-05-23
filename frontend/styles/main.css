@@ -312,3 +312,59 @@ main {
 .foot {
   background-color: #e1e1e1;
 }
+
+.logout-div{
+  display: none;
+}
+
+.show-div {
+  height: 17.5vh;
+  width: 15vw;
+  padding: 1vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2vh;
+  position: fixed;
+  top: 50vh;
+  left: 10vw;
+  background-color: #f1f1f1;
+  border: 1px solid #31e0b1;
+  border-radius: 1rem;
+  box-shadow: 0 0 9px -4px #202020;
+}
+
+.user-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.logout-name-span {
+  width: 100%;
+  font-size: 1.5rem;
+  color: #202020;
+}
+
+.email-span {
+  width: 100%;
+  font-size: 0.8rem;
+  color: #cccccc;
+}
+
+.separator-div {
+  width: 100%;
+  height: 1px;
+  background-color: #cccccc;
+}
+
+.logout-button {
+  width: 60%;
+  height: 5vh;
+  color: #eaeaea;
+  background-color: #e03160;
+  border-radius: 1.2rem;
+  border: 0px;
+  cursor: pointer;
+}

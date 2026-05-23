@@ -1,5 +1,6 @@
 <?php
     include "config.php";
+    session_start();
 
     if(isset($_POST["user-id"])){
         $user_id = $_POST["user-id"];
@@ -12,5 +13,11 @@
         $user_info = $result->fetch_assoc();
 
         echo json_encode($user_info);
+    }
+
+    if(isset($_GET["logout"])){
+        session_destroy();
+        header("Location: ../frontend/login.php");
+        exit();
     }
 ?>

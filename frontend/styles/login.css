@@ -83,7 +83,7 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
 
 input[type="button"] {
     height: 2.7rem;
-    border-radius: 20px;
+    border-radius: 1.5rem;
     font-size: 1rem;
     border: 0px;
     background-color: #e03160;
