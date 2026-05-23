@@ -1,7 +1,7 @@
 <?php
     include "config.php";
 
-    $sql = $connection->prepare("SELECT name, banner, creation_date,(SELECT CONCAT(first_name, ' ', last_name) FROM users WHERE quizzes.user_id = users.id) AS user_full_name FROM quizzes ORDER BY creation_date DESC;");
+    $sql = $connection->prepare("SELECT id, name, banner, creation_date,(SELECT CONCAT(first_name, ' ', last_name) FROM users WHERE quizzes.user_id = users.id) AS user_full_name FROM quizzes ORDER BY creation_date DESC WHERE quizzes.user_id = users.id;");
     $sql->execute();
     $result = $sql->get_result();
 

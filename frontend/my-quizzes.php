@@ -1,3 +1,15 @@
+<?php
+  session_start();
+
+  if((!isset($_SESSION["email"]))){
+    unset($_SESSION["email"]);
+    header("location: login.php");
+    exit();
+  }
+
+  $logged_in = ["email"];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +40,7 @@
         </section>
         <section class="quizzes-section">
             <div class="logo">
-                <img src="./resources/logo.png" alt="Diskuti's logo">
+                <img src="./resources/diskuti-logo.png" alt="Diskuti's logo">
             </div>
             <h1>My Quizzes</h1>
             <div class="search-box">

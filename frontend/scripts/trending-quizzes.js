@@ -28,4 +28,12 @@ fetch("../backend/trending-quizzes.php")
 
         feed_wrapper.appendChild(item_box);
     }
+
+    const quizzes = document.querySelectorAll(".feed-item");
+
+    for(quiz of quizzes){
+        quiz.addEventListener("click", function(event){
+            window.location.href = `./quiz-submission.php?quiz-id=${event.target.getAttribute('quiz-id')}&user-id=${document.querySelector(".feed-wrapper").dataset.userId}`;
+        })
+    }
 })

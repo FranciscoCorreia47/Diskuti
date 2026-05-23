@@ -82,9 +82,9 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
 }
 
 input[type="button"] {
-    height: 6.75vh;
-    border-radius: 20px;
-    font-size: 2.75vh;
+    height: 2.7rem;
+    border-radius: 1.5rem;
+    font-size: 1rem;
     border: 0px;
     background-color: #e03160;
     color: #eaeaea;
@@ -177,7 +177,7 @@ input[type="button"]:hover {
     left: 35vw;
     width: 30%;
     height: 3.5rem;
-    background-color: rgb(255, 154, 154);
+    background-color: #ff9a9a;
     border: 1px solid rgb(221, 63, 63);
     border-radius: 8px;
     margin-top: -1rem;
