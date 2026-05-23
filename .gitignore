@@ -1,2 +1,4 @@
 backend/.*
 backend/banners
+backend/composer.*
+backend/vendor/

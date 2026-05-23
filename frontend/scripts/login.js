@@ -25,9 +25,6 @@ const password = document.querySelector("#password");
 
 
 login_btn.addEventListener("click", function(){
-    console.log("botão clicado");
-    console.log("email:", email.value);
-    console.log("password:", password.value);
     if(email.value != "" && password.value != ""){
         fetch("../backend/user-login.php", {
             method: "POST",
@@ -45,10 +42,9 @@ login_btn.addEventListener("click", function(){
                     console.error("Email is empty, cannot set cookie");
                 }
                 window.location.href = "./index.php";
-                email.value = "";
-                password.value = "";
-            } else {
-                const form_area = document.querySelector(".area-form");
+            }
+            else{
+                const body = document.querySelector("body");
                 const login_error = document.createElement("div");
                 const error_text = document.createElement("span");
                 const error_symbol = document.createElement("span");
@@ -60,7 +56,7 @@ login_btn.addEventListener("click", function(){
 
                 login_error.appendChild(error_symbol);
                 login_error.appendChild(error_text);
-                form_area.prepend(login_error);
+                body.prepend(login_error);
             }
         })
         .catch(error => {
