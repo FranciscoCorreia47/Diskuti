@@ -17,13 +17,13 @@
     <!--Image-->
     <section class="banner vertical">
       <h2>Quizz - Discuss - Connect</h2>
-      <img src="resources/banner-img.svg" alt="Account Creation and Login pages' banner image">
+      <img src="./resources/banner-img.svg" alt="Account Creation and Login pages' banner image">
     </section>
 
     <!--Login Form-->
     <section class="area vertical">
       <div class="area-banner">
-        <img src="resources/logo.svg" alt="Diskuti's Logo">
+        <img src="./resources/logo.svg" alt="Diskuti's Logo">
         <h1>Welcome Back</h1>
         <h3>Jump back into the discussion!</h3>
       </div>
@@ -44,7 +44,7 @@
           <input class="btn-input" type="button" name="login" id="login-btn" value="Log In">
         </form>
         <div class="separator"></div> <!--A linha que tem de separação-->
-        <span class="external-link">Don't have an account? <a href="account-creation.php" id="redirect">Sign Up</a></span>
+        <span class="external-link">Don't have an account? <a href="./account-creation.php" id="redirect">Sign Up</a></span>
       </div>
     </section>
   </main>

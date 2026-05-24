@@ -41,7 +41,7 @@ login_btn.addEventListener("click", function(){
                 } else {
                     console.error("Email is empty, cannot set cookie");
                 }
-                window.location.href = "./index.php";
+                window.location.href = "/";
             }
             else{
                 const body = document.querySelector("body");
