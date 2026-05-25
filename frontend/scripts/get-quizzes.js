@@ -95,7 +95,6 @@ fetch(`../backend/get-quizzes.php?user-id=${user_id}`)
                             user_comment.appendChild(comment_details);
                             user_comment.appendChild(comm_text);
                             
-                            if()
                             comment_div.appendChild(user_comment);
                         }
 
