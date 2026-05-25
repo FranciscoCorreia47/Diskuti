@@ -1,4 +1,7 @@
-fetch("../backend/get-quizzes.php")
+const params = new URLSearchParams(window.location.search);
+const user_id = params.get("user-id");
+
+fetch(`../backend/get-quizzes.php?user-id=${user_id}`)
 .then(response => response.json())
 .then(data => {
     const quizzes_list = document.querySelector(".quizzes-list");
@@ -23,20 +26,36 @@ fetch("../backend/get-quizzes.php")
                 quizzes_list.removeChild(quizzes_list.lastChild);
             }
 
-            for(quiz of data){
+            for(quiz of Object.values(data)){
                 if(quiz["name"].includes(search_input.value.trim())){
                     const id = quiz["id"];
                     const name = quiz["name"];
                     const creation_date = quiz["creation_date"];
                     const banner = quiz["banner"];
-                    const user_full_name = quiz["user_full_name"];
+                    const user_full_name = quiz["user_name"];
+                    const submit_count = quiz["submit_count"];
+                    const comments_count = Object.values(quiz.comments).length;
 
                     const quiz_box = document.createElement("div");
                     const quiz_item = document.createElement("div");
                     const name_span = document.createElement("span");
                     const quiz_details = document.createElement("span");
+                    const quiz_statistics = document.createElement("div");
+                    const submit_span = document.createElement("span");
+                    const comment_span = document.createElement("span");
+                    const comment_icon = document.createElement("span");
+                    comment_icon.classList.add("fa-comment");
+                    comment_icon.classList.add("fa-regular");
+                    const submission_icon = document.createElement("span");
+                    submission_icon.classList.add("fa-arrow-up-from-bracket");
+                    submission_icon.classList.add("fa-solid");
+                    const submit_count_span = document.createElement("span");
+                    const comments_count_span = document.createElement("span");
 
-                    quiz_item.style.backgroundImage = `url(${banner})`;
+                    submit_count_span.textContent = `${submit_count}`;
+                    comments_count_span.textContent = `${comments_count}`;
+
+                    quiz_item.style.backgroundImage = `url(../backend/${banner})`;
                     name_span.textContent = name;
                     quiz_details.textContent = `${user_full_name} • ${creation_date}`;
 
@@ -44,10 +63,59 @@ fetch("../backend/get-quizzes.php")
                     quiz_item.classList.add("quiz");
                     name_span.classList.add("name-span");
                     quiz_details.classList.add("quiz-details");
+                    quiz_statistics.classList.add("quiz-statistics");
+                    submit_span.classList.add("submit-span");
+                    comment_span.classList.add("comment-span");
+                    
+                    comment_icon.addEventListener("click", function(){
+                        const comment_section = document.querySelector(".comment-section");
+                        comment_section.classList.toggle("show-comments");
+
+                        const comment_div = document.querySelector(".comment-div");
+                        
+                        for(comm of Object.values(quiz.comments)){
+                            const user_comment = document.createElement("div");
+                            const comm_text = document.createElement("div");
+                            const comment_details = document.createElement("div");
+                            const user_span = document.createElement("span");
+                            const date_span = document.createElement("span");
+
+                            user_span.textContent = `${comm.user_name}`;
+                            date_span.textContent = `${comm.creation_date}`;
+                            comm_text.textContent = `${comm.text}`;
+
+                            user_span.classList.add("comment-user-span");
+                            date_span.classList.add("comment-date-span");
+                            comment_details.appendChild(user_span);
+                            comment_details.appendChild(date_span);
+                            comment_details.classList.add("comment-details");
+
+                            comm_text.classList.add("comment-text");
+
+                            user_comment.appendChild(comment_details);
+                            user_comment.appendChild(comm_text);
+                            
+                            if()
+                            comment_div.appendChild(user_comment);
+                        }
+
+                        comment_section.addEventListener("click", function(){
+                            comment_section.classList.toggle("comment-section");
+                        })
+                    });
+
+                    submit_span.appendChild(submission_icon);
+                    submit_span.appendChild(submit_count_span);
+                    comment_span.appendChild(comment_icon);
+                    comment_span.appendChild(comments_count_span);
+
+                    quiz_statistics.appendChild(submit_span);
+                    quiz_statistics.appendChild(comment_span);
 
                     quiz_box.appendChild(quiz_item);
                     quiz_box.appendChild(name_span);
                     quiz_box.appendChild(quiz_details);
+                    quiz_box.appendChild(quiz_statistics);
 
                     quizzes_list.appendChild(quiz_box);
                 }
@@ -69,14 +137,30 @@ fetch("../backend/get-quizzes.php")
                 const name = quiz["name"];
                 const creation_date = quiz["creation_date"];
                 const banner = quiz["banner"];
-                const user_full_name = quiz["user_full_name"];
+                const user_full_name = quiz["user_name"];
+                const submit_count = quiz["submit_count"];
+                const comments_count = Object.values(quiz.comments).length;
 
                 const quiz_box = document.createElement("div");
                 const quiz_item = document.createElement("div");
                 const name_span = document.createElement("span");
                 const quiz_details = document.createElement("span");
+                const quiz_statistics = document.createElement("div");
+                const submit_span = document.createElement("span");
+                const comment_span = document.createElement("span");
+                const comment_icon = document.createElement("span");
+                comment_icon.classList.add("fa-comment");
+                comment_icon.classList.add("fa-regular");
+                const submission_icon = document.createElement("span");
+                submission_icon.classList.add("fa-arrow-up-from-bracket");
+                submission_icon.classList.add("fa-solid");
+                const submit_count_span = document.createElement("span");
+                const comments_count_span = document.createElement("span");
 
-                quiz_item.style.backgroundImage = `url(${banner})`;
+                submit_count_span.textContent = `${submit_count}`;
+                comments_count_span.textContent = `${comments_count}`;
+
+                quiz_item.style.backgroundImage = `url(../backend/${banner})`;
                 name_span.textContent = name;
                 quiz_details.textContent = `${user_full_name} • ${creation_date}`;
 
@@ -84,29 +168,93 @@ fetch("../backend/get-quizzes.php")
                 quiz_item.classList.add("quiz");
                 name_span.classList.add("name-span");
                 quiz_details.classList.add("quiz-details");
+                quiz_statistics.classList.add("quiz-statistics");
+                submit_span.classList.add("submit-span");
+                comment_span.classList.add("comment-span");
+                
+                comment_icon.addEventListener("click", function(){
+                    const comment_section = document.querySelector(".comment-section");
+                    comment_section.classList.toggle("show-comments");
+
+                    const comment_div = document.querySelector(".comment-div");
+                    
+                    for(comm of Object.values(quiz.comments)){
+                        const user_comment = document.createElement("div");
+                        const comm_text = document.createElement("div");
+                        const comment_details = document.createElement("div");
+                        const user_span = document.createElement("span");
+                        const date_span = document.createElement("span");
+
+                        user_span.textContent = `${comm.user_name}`;
+                        date_span.textContent = `${comm.creation_date}`;
+                        comm_text.textContent = `${comm.text}`;
+
+                        user_span.classList.add("comment-user-span");
+                        date_span.classList.add("comment-date-span");
+                        comment_details.appendChild(user_span);
+                        comment_details.appendChild(date_span);
+                        comment_details.classList.add("comment-details");
+
+                        comm_text.classList.add("comment-text");
+
+                        user_comment.appendChild(comment_details);
+                        user_comment.appendChild(comm_text);
+
+                        comment_div.appendChild(user_comment);
+                    }
+
+                    comment_section.addEventListener("click", function(){
+                        comment_section.classList.toggle("comment-section");
+                    })
+                });
+
+                submit_span.appendChild(submission_icon);
+                submit_span.appendChild(submit_count_span);
+                comment_span.appendChild(comment_icon);
+                comment_span.appendChild(comments_count_span);
+
+                quiz_statistics.appendChild(submit_span);
+                quiz_statistics.appendChild(comment_span);
 
                 quiz_box.appendChild(quiz_item);
                 quiz_box.appendChild(name_span);
                 quiz_box.appendChild(quiz_details);
+                quiz_box.appendChild(quiz_statistics);
 
                 quizzes_list.appendChild(quiz_box);
             }
         }
     })
 
-    for(quiz of data){
+    for(quiz of Object.values(data)){
         const id = quiz["id"];
         const name = quiz["name"];
         const creation_date = quiz["creation_date"];
         const banner = quiz["banner"];
-        const user_full_name = quiz["user_full_name"];
+        const user_full_name = quiz["user_name"];
+        const submit_count = quiz["submit_count"];
+        const comments_count = Object.values(quiz.comments).length;
 
         const quiz_box = document.createElement("div");
         const quiz_item = document.createElement("div");
         const name_span = document.createElement("span");
         const quiz_details = document.createElement("span");
+        const quiz_statistics = document.createElement("div");
+        const submit_span = document.createElement("span");
+        const comment_span = document.createElement("span");
+        const comment_icon = document.createElement("span");
+        comment_icon.classList.add("fa-comment");
+        comment_icon.classList.add("fa-regular");
+        const submission_icon = document.createElement("span");
+        submission_icon.classList.add("fa-arrow-up-from-bracket");
+        submission_icon.classList.add("fa-solid");
+        const submit_count_span = document.createElement("span");
+        const comments_count_span = document.createElement("span");
 
-        quiz_item.style.backgroundImage = `url(${banner})`;
+        submit_count_span.textContent = `${submit_count}`;
+        comments_count_span.textContent = `${comments_count}`;
+
+        quiz_item.style.backgroundImage = `url(../backend/${banner})`;
         name_span.textContent = name;
         quiz_details.textContent = `${user_full_name} • ${creation_date}`;
 
@@ -114,10 +262,58 @@ fetch("../backend/get-quizzes.php")
         quiz_item.classList.add("quiz");
         name_span.classList.add("name-span");
         quiz_details.classList.add("quiz-details");
+        quiz_statistics.classList.add("quiz-statistics");
+        submit_span.classList.add("submit-span");
+        comment_span.classList.add("comment-span");
+        
+        comment_icon.addEventListener("click", function(){
+            const comment_section = document.querySelector(".comment-section");
+            comment_section.classList.toggle("show-comments");
+
+            const comment_div = document.querySelector(".comment-div");
+            
+            for(comm of Object.values(quiz.comments)){
+                const user_comment = document.createElement("div");
+                const comm_text = document.createElement("div");
+                const comment_details = document.createElement("div");
+                const user_span = document.createElement("span");
+                const date_span = document.createElement("span");
+
+                user_span.textContent = `${comm.user_name}`;
+                date_span.textContent = `${comm.creation_date}`;
+                comm_text.textContent = `${comm.text}`;
+
+                user_span.classList.add("comment-user-span");
+                date_span.classList.add("comment-date-span");
+                comment_details.appendChild(user_span);
+                comment_details.appendChild(date_span);
+                comment_details.classList.add("comment-details");
+
+                comm_text.classList.add("comment-text");
+
+                user_comment.appendChild(comment_details);
+                user_comment.appendChild(comm_text);
+
+                comment_div.appendChild(user_comment);
+            }
+
+            comment_section.addEventListener("click", function(){
+                comment_section.classList.toggle("comment-section");
+            })
+        });
+
+        submit_span.appendChild(submission_icon);
+        submit_span.appendChild(submit_count_span);
+        comment_span.appendChild(comment_icon);
+        comment_span.appendChild(comments_count_span);
+
+        quiz_statistics.appendChild(submit_span);
+        quiz_statistics.appendChild(comment_span);
 
         quiz_box.appendChild(quiz_item);
         quiz_box.appendChild(name_span);
         quiz_box.appendChild(quiz_details);
+        quiz_box.appendChild(quiz_statistics);
 
         quizzes_list.appendChild(quiz_box);
     }
