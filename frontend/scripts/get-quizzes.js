@@ -26,7 +26,7 @@ fetch(`../backend/get-quizzes.php?user-id=${user_id}`)
                 quizzes_list.removeChild(quizzes_list.lastChild);
             }
 
-            for(quiz of Object.values(data)){
+            for(let quiz of Object.values(data)){
                 if(quiz["name"].includes(search_input.value.trim())){
                     const id = quiz["id"];
                     const name = quiz["name"];
@@ -70,10 +70,16 @@ fetch(`../backend/get-quizzes.php?user-id=${user_id}`)
                     comment_icon.addEventListener("click", function(){
                         const comment_section = document.querySelector(".comment-section");
                         comment_section.classList.toggle("show-comments");
-
-                        const comment_div = document.querySelector(".comment-div");
                         
-                        for(comm of Object.values(quiz.comments)){
+                        const comment_div = document.querySelector(".comment-div");
+                        while(comment_div.firstChild){
+                            comment_div.removeChild(comment_div.firstChild);
+                        }
+                        
+                        let comments_displayed = 0;
+
+                        for(let comm of Object.values(quiz.comments)){
+
                             const user_comment = document.createElement("div");
                             const comm_text = document.createElement("div");
                             const comment_details = document.createElement("div");
@@ -94,13 +100,18 @@ fetch(`../backend/get-quizzes.php?user-id=${user_id}`)
 
                             user_comment.appendChild(comment_details);
                             user_comment.appendChild(comm_text);
+                            user_comment.classList.add("user-comment");
                             
                             comment_div.appendChild(user_comment);
+
+                            const comment_separator = document.createElement("div");
+                            comment_separator.classList.add("comment-separator");
+
+                            comment_div.appendChild(comment_separator);
+
+                            comments_displayed += 1;
                         }
 
-                        comment_section.addEventListener("click", function(){
-                            comment_section.classList.toggle("comment-section");
-                        })
                     });
 
                     submit_span.appendChild(submission_icon);
@@ -131,7 +142,11 @@ fetch(`../backend/get-quizzes.php?user-id=${user_id}`)
             new_search_btn.id = "search-btn";
             search_box.appendChild(new_search_btn);
 
-            for(quiz of data){
+            while (quizzes_list.firstChild) {
+                quizzes_list.removeChild(quizzes_list.lastChild);
+            }
+
+            for(let quiz of Object.values(data)){
                 const id = quiz["id"];
                 const name = quiz["name"];
                 const creation_date = quiz["creation_date"];
@@ -174,10 +189,16 @@ fetch(`../backend/get-quizzes.php?user-id=${user_id}`)
                 comment_icon.addEventListener("click", function(){
                     const comment_section = document.querySelector(".comment-section");
                     comment_section.classList.toggle("show-comments");
-
-                    const comment_div = document.querySelector(".comment-div");
                     
-                    for(comm of Object.values(quiz.comments)){
+                    const comment_div = document.querySelector(".comment-div");
+                    while(comment_div.firstChild){
+                        comment_div.removeChild(comment_div.firstChild);
+                    }
+                    
+                    let comments_displayed = 0;
+
+                    for(let comm of Object.values(quiz.comments)){
+
                         const user_comment = document.createElement("div");
                         const comm_text = document.createElement("div");
                         const comment_details = document.createElement("div");
@@ -198,13 +219,18 @@ fetch(`../backend/get-quizzes.php?user-id=${user_id}`)
 
                         user_comment.appendChild(comment_details);
                         user_comment.appendChild(comm_text);
-
+                        user_comment.classList.add("user-comment");
+                        
                         comment_div.appendChild(user_comment);
+
+                        const comment_separator = document.createElement("div");
+                        comment_separator.classList.add("comment-separator");
+
+                        comment_div.appendChild(comment_separator);
+
+                        comments_displayed += 1;
                     }
 
-                    comment_section.addEventListener("click", function(){
-                        comment_section.classList.toggle("comment-section");
-                    })
                 });
 
                 submit_span.appendChild(submission_icon);
@@ -225,7 +251,7 @@ fetch(`../backend/get-quizzes.php?user-id=${user_id}`)
         }
     })
 
-    for(quiz of Object.values(data)){
+    for(let quiz of Object.values(data)){
         const id = quiz["id"];
         const name = quiz["name"];
         const creation_date = quiz["creation_date"];
@@ -268,10 +294,16 @@ fetch(`../backend/get-quizzes.php?user-id=${user_id}`)
         comment_icon.addEventListener("click", function(){
             const comment_section = document.querySelector(".comment-section");
             comment_section.classList.toggle("show-comments");
-
-            const comment_div = document.querySelector(".comment-div");
             
-            for(comm of Object.values(quiz.comments)){
+            const comment_div = document.querySelector(".comment-div");
+            while(comment_div.firstChild){
+                comment_div.removeChild(comment_div.firstChild);
+            }
+            
+            let comments_displayed = 0;
+
+            for(let comm of Object.values(quiz.comments)){
+
                 const user_comment = document.createElement("div");
                 const comm_text = document.createElement("div");
                 const comment_details = document.createElement("div");
@@ -292,13 +324,18 @@ fetch(`../backend/get-quizzes.php?user-id=${user_id}`)
 
                 user_comment.appendChild(comment_details);
                 user_comment.appendChild(comm_text);
-
+                user_comment.classList.add("user-comment");
+                
                 comment_div.appendChild(user_comment);
+
+                const comment_separator = document.createElement("div");
+                comment_separator.classList.add("comment-separator");
+
+                comment_div.appendChild(comment_separator);
+
+                comments_displayed += 1;
             }
 
-            comment_section.addEventListener("click", function(){
-                comment_section.classList.toggle("comment-section");
-            })
         });
 
         submit_span.appendChild(submission_icon);
@@ -317,3 +354,11 @@ fetch(`../backend/get-quizzes.php?user-id=${user_id}`)
         quizzes_list.appendChild(quiz_box);
     }
 })
+
+const comment_section = document.querySelector(".comment-section");
+
+comment_section.addEventListener("click", function(event) {
+    if (event.target === comment_section) {
+        comment_section.classList.remove("show-comments");
+    }
+});

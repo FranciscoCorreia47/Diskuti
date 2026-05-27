@@ -20,6 +20,8 @@
   <link rel="stylesheet" type="text/css" href="./styles/reset.css">
   <link rel="stylesheet" type="text/css" href="./styles/styles.css">
   <link rel="stylesheet" type="text/css" href="./styles/main.css">
+  <link rel="stylesheet" type="text/css" href="./styles/search-quiz.css">
+  <script src="https://kit.fontawesome.com/c818a7c46a.js" crossorigin="anonymous"></script>
   <script src="https://js.pusher.com/8.0.1/pusher.min.js"></script>
   <title>Diskuti | Home</title>
 </head>
@@ -47,8 +49,9 @@
       <img src="./resources/logo.svg" alt="Logo">
     </section>
     <section class="search">
-      <div class="bar">
-        <input type="text" name="search" id="search-bar" placeholder="Search for topic">
+      <div class="bar search-input">
+        <input type="text" name="search" class="search-bar" placeholder="Search for topic">
+        <span class="fa-solid fa-magnifying-glass search-btn"></span>
       </div>
     </section>
     <section class="chatbar vertical">
@@ -72,10 +75,23 @@
       <div class="logout-div"></div>
     </section>
     <section class="foot">Footer</section>
+    <section class="search-box" data-user-id="<?php echo $_SESSION['id'] ?>">
+      <div class="search-area">
+        <div class="search-header">
+          <img src="./resources/logo.svg" alt="Logo">
+          <div class="search-input">
+              <input type="text" name="search" class="search-bar" placeholder="Search for topic">
+              <span class="fa-solid fa-magnifying-glass search-btn"></span>
+          </div>
+        </div>
+        <div class="search-results"></div>
+      </div>
+    </section>
   </main>
   <script src="./scripts/trending-quizzes.js"></script>
   <script src="./scripts/main.js"></script>
   <script src="./scripts/user-logout.js"></script>
   <script src="./scripts/chat.js"></script>
+  <script src="./scripts/search-quiz.js"></script>
 </body>
 </html>

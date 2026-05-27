@@ -26,7 +26,7 @@
     <section class="top-bar horizontal">
       <ul class="horizontal top-menu">
         <li>
-          <a href="./index.php"><img src="./resources/diskuti-logo.png" alt="Diskuti's logo"></a>
+          <a href="./index.php"><img src="./resources/logo-dark.svg" alt="Logo"></a>
         </li>
         <li>
           <h1 id="quiz-name">Quizz Name</h1>

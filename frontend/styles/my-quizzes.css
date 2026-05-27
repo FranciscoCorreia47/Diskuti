@@ -24,6 +24,11 @@
     display: none;
 }
 
+.quizzes-section > h1 {
+    color: #202020;
+    font-size: 2.5rem;
+}
+
 .quizzes-area {
     display: flex;
     flex-direction: column;
@@ -31,11 +36,13 @@
     align-items: flex-start; 
     width: 88%; 
 }
+
 .quizzes-list {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-evenly;
     flex-wrap: wrap;
-    gap: 7.5vw;
+    gap: 4vw;
+    padding-bottom: 7.5vh;
 }
 
 .quiz-box {
@@ -60,7 +67,7 @@
 
 .name-span {
   font-size: 1.3rem;
-  color: #31e0b1;
+  color: #e03160;
   font-weight: bold;
   display: flex;
   flex-wrap: wrap;
@@ -120,16 +127,80 @@
 }
 
 .comment-div {
-    width: 35%;
+    width: 32%;
     height: 80%;
     padding: 2vw;
     display: flex;
     flex-direction: column;
-    gap: 2vh;
-    align-items: center;    
+    align-items: stretch;   
+    gap: 4vh; 
     overflow-y: auto;
     background-color: #f1f1f1;
-    border: 1px solid #31e0b1;
+    border: 2px solid #31e0b1;
     border-radius: 24px;
     box-shadow: 0 9px -4px #202020;
+}
+
+.comment-div::-webkit-scrollbar {
+    display: none;
+}
+
+.user-comment {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.comment-details {
+    width: 100%;
+    display: flex;
+    gap: 1vw;
+    font-size: 1rem;
+}
+
+.comment-user-span {
+    color: #e03160;
+    font-weight: bold;
+}
+
+.comment-date-span {
+    color: #cccccc;
+}
+
+.comment-text {
+    font-size: 1.2rem;
+    color: #202020;
+    text-align: justify;
+}
+
+.comment-separator {
+    width: 100%;
+    height: 1px;
+    background-color: #cccccc;
+    min-height: 1px;       
+}
+
+.quiz-statistics {
+    display: flex;
+    gap: 1vw;
+    color: #202020;
+}
+
+.submit-span {
+    display: flex;
+    gap: 0.5vw;
+}
+
+.comment-span {
+    display: flex;
+    gap: 0.5vw;
+}
+
+.fa-comment {
+    cursor: pointer;
+}
+
+.fa-comment:hover {
+    color: #31e0b1;
 }

@@ -12,6 +12,7 @@
         $quiz_data = new stdClass();
         $comments = [];
 
+        $i = 1;
         while($row = mysqli_fetch_assoc($quiz_result)){
             $quiz_id = $row["id"];
 
@@ -20,7 +21,6 @@
             $comment_sql->execute();
             $comment_result = $comment_sql->get_result();
 
-            $i = 1;
             $quiz_data->{"quiz".$i} = new stdClass();
             $quiz_data->{"quiz".$i}->id = $row["id"];
             $quiz_data->{"quiz".$i}->name = $row["name"];
@@ -30,14 +30,18 @@
             $quiz_data->{"quiz".$i}->user_name = $row["user_full_name"];
             $quiz_data->{"quiz".$i}->comments = new stdClass();
 
+            $j = 1;
             while($comment = mysqli_fetch_assoc($comment_result)){
-                $j = 1;
                 $quiz_data->{"quiz".$i}->comments->{"quiz".$j} = new stdClass();
                 $quiz_data->{"quiz".$i}->comments->{"quiz".$j}->user_name = $comment["user_full_name"];
                 $quiz_data->{"quiz".$i}->comments->{"quiz".$j}->text = $comment["text"];
                 $quiz_data->{"quiz".$i}->comments->{"quiz".$j}->creation_date = $comment["creation_date"];
+
+                $j++;
             }
+            $i++;
         }
+
 
         echo json_encode($quiz_data);
     }
