@@ -112,6 +112,24 @@ fetch(`../backend/get-quizzes.php?user-id=${user_id}`)
                             comments_displayed += 1;
                         }
 
+                        if(comments_displayed.childElementCount == 0){
+                            const search_img = document.createElement("img");
+                            search_img.src = "resources/search-img.svg";
+                            search_img.classList.add("search-img");
+
+                            const no_results_text = document.createElement("span");
+                            no_results_text.textContent = "Ops! No matches found"
+                            no_results_text.classList.add("no-results-text");
+
+                            const no_results = document.createElement("div");
+                            no_results.classList.add("no-results");
+
+                            no_results.appendChild(search_img);
+                            no_results.appendChild(no_results_text);
+
+                            comments_displayed.appendChild(no_results)
+                        }
+
                     });
 
                     submit_span.appendChild(submission_icon);

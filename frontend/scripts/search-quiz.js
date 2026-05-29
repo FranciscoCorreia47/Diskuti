@@ -46,9 +46,8 @@ for(let input of search_bars){
                     item_box.appendChild(quiz_details);
 
                     search_results.appendChild(item_box);
-
                 }
-
+                
                 if(search_results.childElementCount == 0){
                     const search_img = document.createElement("img");
                     search_img.src = "resources/search-img.svg";
@@ -64,7 +63,7 @@ for(let input of search_bars){
                     no_results.appendChild(search_img);
                     no_results.appendChild(no_results_text);
 
-                    quiz_displayed.appendChild(no_results)
+                    search_results.appendChild(no_results)
                 }
 
                 const quizzes = search_results.querySelectorAll(".feed-item");
