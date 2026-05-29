@@ -46,6 +46,25 @@ for(let input of search_bars){
                     item_box.appendChild(quiz_details);
 
                     search_results.appendChild(item_box);
+
+                }
+
+                if(search_results.childElementCount == 0){
+                    const search_img = document.createElement("img");
+                    search_img.src = "resources/search-img.svg";
+                    search_img.classList.add("search-img");
+
+                    const no_results_text = document.createElement("span");
+                    no_results_text.textContent = "Ops! No matches found"
+                    no_results_text.classList.add("no-results-text");
+
+                    const no_results = document.createElement("div");
+                    no_results.classList.add("no-results");
+
+                    no_results.appendChild(search_img);
+                    no_results.appendChild(no_results_text);
+
+                    quiz_displayed.appendChild(no_results)
                 }
 
                 const quizzes = search_results.querySelectorAll(".feed-item");
