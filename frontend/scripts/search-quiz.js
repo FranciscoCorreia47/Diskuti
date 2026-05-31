@@ -19,7 +19,7 @@ for(let input of search_bars){
             const formdata = new FormData;
             formdata.append("search-text", search_text);
 
-            fetch("../backend/search-quiz.php", {
+            fetch("/backend/search-quiz.php", {
                 method: "POST",
                 body: formdata
             })
@@ -31,7 +31,7 @@ for(let input of search_bars){
                     const name_span = document.createElement("span");
                     const quiz_details = document.createElement("span");
 
-                    feed_item.style.backgroundImage = `url(../backend/${quiz["banner"]})`;
+                    feed_item.style.backgroundImage = `url(backend/${quiz["banner"]})`;
                     feed_item.setAttribute('quiz-id', quiz["id"]);
                     name_span.textContent = quiz["name"];
                     quiz_details.textContent = `${quiz["user_full_name"]} • ${quiz["creation_date"]}`;
@@ -50,7 +50,7 @@ for(let input of search_bars){
                 
                 if(search_results.childElementCount == 0){
                     const search_img = document.createElement("img");
-                    search_img.src = "resources/search-img.svg";
+                    search_img.src = "frontend/resources/search-img.svg";
                     search_img.classList.add("search-img");
 
                     const no_results_text = document.createElement("span");
@@ -70,7 +70,7 @@ for(let input of search_bars){
 
                 for(let quiz of quizzes){
                     quiz.addEventListener("click", function(event){
-                        window.location.href = `./quiz-submission.php?quiz-id=${event.target.getAttribute('quiz-id')}&user-id=${document.querySelector(".search-box").dataset.userId}`;
+                        window.location.href = `frontend/quiz-submission.php?quiz-id=${event.target.getAttribute('quiz-id')}&user-id=${document.querySelector(".search-box").dataset.userId}`;
                     })
                 }
             })

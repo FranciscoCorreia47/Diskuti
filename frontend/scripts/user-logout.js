@@ -7,7 +7,7 @@ account_btn.addEventListener("click", function(){
     const formdata = new FormData();
     formdata.append("user-id", user_id);
 
-    fetch("../backend/user-logout.php", {
+    fetch("backend/user-logout.php", {
         method: "POST",
         body: formdata
     })
@@ -42,7 +42,7 @@ account_btn.addEventListener("click", function(){
         separator.classList.add("separator-div");
 
         logout_button.addEventListener("click", function(){
-            window.location.href = "../backend/user-logout.php?logout=1";
+            window.location.href = "backend/user-logout.php?logout=1";
         })
 
         user_info_div.classList.toggle("show-div");
