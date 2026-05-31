@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="./styles/reset.css">
   <link rel="stylesheet" href="./styles/styles.css">
   <link rel="stylesheet" href="./styles/quiz-creation.css">
+  <link rel="icon" type="image/png" href="./resources/diskuti-icon.png">
   <title>Diskuti | Quizz Maker</title>
 </head>
 <body>

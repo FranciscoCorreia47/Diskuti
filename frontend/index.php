@@ -21,6 +21,7 @@
   <link rel="stylesheet" type="text/css" href="./styles/styles.css">
   <link rel="stylesheet" type="text/css" href="./styles/main.css">
   <link rel="stylesheet" type="text/css" href="./styles/search-quiz.css">
+  <link rel="icon" type="image/png" href="./resources/diskuti-icon.png">
   <script src="https://kit.fontawesome.com/c818a7c46a.js" crossorigin="anonymous"></script>
   <script src="https://js.pusher.com/8.0.1/pusher.min.js"></script>
   <title>Diskuti | Home</title>

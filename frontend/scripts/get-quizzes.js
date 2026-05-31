@@ -72,10 +72,31 @@ fetch(`../backend/get-quizzes.php?user-id=${user_id}`)
                         comment_section.classList.toggle("show-comments");
                         
                         const comment_div = document.querySelector(".comment-div");
-                        while(comment_div.firstChild){
-                            comment_div.removeChild(comment_div.firstChild);
+
+                        const comment_body = document.querySelector(".comment-body");
+                        while(comment_body.firstChild){
+                            comment_body.removeChild(comment_body.firstChild);
                         }
+
+                        const comment_header = document.querySelector(".comment-header");
+                        while(comment_header.firstChild){
+                            comment_header.removeChild(comment_header.firstChild);
+                        }
+
+                        const comment_header_name = document.createElement("span");
+                        const comment_header_number = document.createElement("span");
+
+                        comment_header_name.textContent = `${name} `;
+                        comment_header_number.textContent = `• ${Object.values(quiz.comments).length} Comments`;
                         
+                        comment_header_name.classList.add("comment-header-name");
+                        comment_header_number.classList.add("comment-header-number");
+
+                        comment_header.appendChild(comment_header_name);
+                        comment_header.appendChild(comment_header_number);
+
+                        comment_div.appendChild(comment_body);
+
                         let comments_displayed = 0;
 
                         for(let comm of Object.values(quiz.comments)){
@@ -102,32 +123,32 @@ fetch(`../backend/get-quizzes.php?user-id=${user_id}`)
                             user_comment.appendChild(comm_text);
                             user_comment.classList.add("user-comment");
                             
-                            comment_div.appendChild(user_comment);
+                            comment_body.appendChild(user_comment);
 
                             const comment_separator = document.createElement("div");
                             comment_separator.classList.add("comment-separator");
 
-                            comment_div.appendChild(comment_separator);
+                            comment_body.appendChild(comment_separator);
 
                             comments_displayed += 1;
                         }
 
-                        if(comments_displayed.childElementCount == 0){
+                        if(comment_body.childElementCount == 0){
                             const search_img = document.createElement("img");
-                            search_img.src = "resources/search-img.svg";
-                            search_img.classList.add("search-img");
+                            search_img.src = "resources/comment-img.svg";
+                            search_img.classList.add("comment-img");
 
                             const no_results_text = document.createElement("span");
-                            no_results_text.textContent = "Ops! No matches found"
-                            no_results_text.classList.add("no-results-text");
+                            no_results_text.textContent = "There are no comments right now!"
+                            no_results_text.classList.add("no-comments-text");
 
                             const no_results = document.createElement("div");
-                            no_results.classList.add("no-results");
+                            no_results.classList.add("no-comments");
 
                             no_results.appendChild(search_img);
                             no_results.appendChild(no_results_text);
 
-                            comments_displayed.appendChild(no_results)
+                            comment_body.appendChild(no_results)
                         }
 
                     });
@@ -147,7 +168,25 @@ fetch(`../backend/get-quizzes.php?user-id=${user_id}`)
 
                     quizzes_list.appendChild(quiz_box);
                 }
-            }   
+            }
+            
+            if(quizzes_list.childElementCount == 0){
+                const quiz_img = document.createElement("img");
+                quiz_img.src = "resources/my-quizzes-img.svg";
+                quiz_img.classList.add("my-quizzes-img");
+
+                const no_quizzes_text = document.createElement("span");
+                no_quizzes_text.textContent = "Your quizzes will apear here"
+                no_quizzes_text.classList.add("no-quizzes-text");
+
+                const no_quizzes = document.createElement("div");
+                no_quizzes.classList.add("no-quizzes");
+
+                no_quizzes.appendChild(quiz_img);
+                no_quizzes.appendChild(no_quizzes_text);
+
+                quizzes_list.appendChild(no_quizzes)
+            }
         }
         
         else if(event.target.classList.contains("fa-x")){
@@ -209,9 +248,30 @@ fetch(`../backend/get-quizzes.php?user-id=${user_id}`)
                     comment_section.classList.toggle("show-comments");
                     
                     const comment_div = document.querySelector(".comment-div");
-                    while(comment_div.firstChild){
-                        comment_div.removeChild(comment_div.firstChild);
+
+                    const comment_body = document.querySelector(".comment-body");
+                    while(comment_body.firstChild){
+                        comment_body.removeChild(comment_body.firstChild);
                     }
+                    
+                    const comment_header = document.querySelector(".comment-header");
+                    while(comment_header.firstChild){
+                        comment_header.removeChild(comment_header.firstChild);
+                    }
+
+                    const comment_header_name = document.createElement("span");
+                    const comment_header_number = document.createElement("span");
+
+                    comment_header_name.textContent = `${name} `;
+                    comment_header_number.textContent = `• ${Object.values(quiz.comments).length} Comments`;
+                    
+                    comment_header_name.classList.add("comment-header-name");
+                    comment_header_number.classList.add("comment-header-number");
+
+                    comment_header.appendChild(comment_header_name);
+                    comment_header.appendChild(comment_header_number);
+
+                    comment_div.appendChild(comment_body);
                     
                     let comments_displayed = 0;
 
@@ -239,14 +299,32 @@ fetch(`../backend/get-quizzes.php?user-id=${user_id}`)
                         user_comment.appendChild(comm_text);
                         user_comment.classList.add("user-comment");
                         
-                        comment_div.appendChild(user_comment);
+                        comment_body.appendChild(user_comment);
 
                         const comment_separator = document.createElement("div");
                         comment_separator.classList.add("comment-separator");
 
-                        comment_div.appendChild(comment_separator);
+                        comment_body.appendChild(comment_separator);
 
                         comments_displayed += 1;
+                    }
+
+                    if(comment_body.childElementCount == 0){
+                        const search_img = document.createElement("img");
+                        search_img.src = "resources/comment-img.svg";
+                        search_img.classList.add("comment-img");
+
+                        const no_results_text = document.createElement("span");
+                        no_results_text.textContent = "There are no comments right now!"
+                        no_results_text.classList.add("no-comments-text");
+
+                        const no_results = document.createElement("div");
+                        no_results.classList.add("no-comments");
+
+                        no_results.appendChild(search_img);
+                        no_results.appendChild(no_results_text);
+
+                        comment_body.appendChild(no_results)
                     }
 
                 });
@@ -266,6 +344,24 @@ fetch(`../backend/get-quizzes.php?user-id=${user_id}`)
 
                 quizzes_list.appendChild(quiz_box);
             }
+        }
+
+        if(quizzes_list.childElementCount == 0){
+            const quiz_img = document.createElement("img");
+            quiz_img.src = "resources/my-quizzes-img.svg";
+            quiz_img.classList.add("my-quizzes-img");
+
+            const no_quizzes_text = document.createElement("span");
+            no_quizzes_text.textContent = "Your quizzes will apear here"
+            no_quizzes_text.classList.add("no-quizzes-text");
+
+            const no_quizzes = document.createElement("div");
+            no_quizzes.classList.add("no-quizzes");
+
+            no_quizzes.appendChild(quiz_img);
+            no_quizzes.appendChild(no_quizzes_text);
+
+            quizzes_list.appendChild(no_quizzes)
         }
     })
 
@@ -314,9 +410,31 @@ fetch(`../backend/get-quizzes.php?user-id=${user_id}`)
             comment_section.classList.toggle("show-comments");
             
             const comment_div = document.querySelector(".comment-div");
-            while(comment_div.firstChild){
-                comment_div.removeChild(comment_div.firstChild);
+
+            const comment_body = document.querySelector(".comment-body");
+            while(comment_body.firstChild){
+                comment_body.removeChild(comment_body.firstChild);
             }
+
+            const comment_header = document.querySelector(".comment-header");
+            while(comment_header.firstChild){
+                comment_header.removeChild(comment_header.firstChild);
+            }
+
+            
+            const comment_header_name = document.createElement("span");
+            const comment_header_number = document.createElement("span");
+
+            comment_header_name.textContent = `${name} `;
+            comment_header_number.textContent = `• ${Object.values(quiz.comments).length} Comments`;
+            
+            comment_header_name.classList.add("comment-header-name");
+            comment_header_number.classList.add("comment-header-number");
+
+            comment_header.appendChild(comment_header_name);
+            comment_header.appendChild(comment_header_number);
+
+            comment_div.appendChild(comment_body);
             
             let comments_displayed = 0;
 
@@ -344,14 +462,32 @@ fetch(`../backend/get-quizzes.php?user-id=${user_id}`)
                 user_comment.appendChild(comm_text);
                 user_comment.classList.add("user-comment");
                 
-                comment_div.appendChild(user_comment);
+                comment_body.appendChild(user_comment);
 
                 const comment_separator = document.createElement("div");
                 comment_separator.classList.add("comment-separator");
 
-                comment_div.appendChild(comment_separator);
+                comment_body.appendChild(comment_separator);
 
                 comments_displayed += 1;
+            }
+
+            if(comment_body.childElementCount == 0){
+                const search_img = document.createElement("img");
+                search_img.src = "resources/comment-img.svg";
+                search_img.classList.add("comment-img");
+
+                const no_results_text = document.createElement("span");
+                no_results_text.textContent = "There are no comments right now!"
+                no_results_text.classList.add("no-comments-text");
+
+                const no_results = document.createElement("div");
+                no_results.classList.add("no-comments");
+
+                no_results.appendChild(search_img);
+                no_results.appendChild(no_results_text);
+
+                comment_body.appendChild(no_results)
             }
 
         });
@@ -370,6 +506,24 @@ fetch(`../backend/get-quizzes.php?user-id=${user_id}`)
         quiz_box.appendChild(quiz_statistics);
 
         quizzes_list.appendChild(quiz_box);
+    }
+
+    if(quizzes_list.childElementCount == 0){
+        const quiz_img = document.createElement("img");
+        quiz_img.src = "resources/my-quizzes-img.svg";
+        quiz_img.classList.add("my-quizzes-img");
+
+        const no_quizzes_text = document.createElement("span");
+        no_quizzes_text.textContent = "Your quizzes will apear here"
+        no_quizzes_text.classList.add("no-quizzes-text");
+
+        const no_quizzes = document.createElement("div");
+        no_quizzes.classList.add("no-quizzes");
+
+        no_quizzes.appendChild(quiz_img);
+        no_quizzes.appendChild(no_quizzes_text);
+
+        quizzes_list.appendChild(no_quizzes)
     }
 })
 
