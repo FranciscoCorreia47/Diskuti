@@ -17,5 +17,5 @@ proceed.addEventListener("click", function(){
   const quiz_name = quiz_input.value.trim();
 
   localStorage.setItem("quiz-name", JSON.stringify({name: quiz_name}));
-  window.location.href = "quiz-creation.php";
+  window.location.href = "frontend/quiz-creation.php";
 });

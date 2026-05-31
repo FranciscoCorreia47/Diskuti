@@ -14,7 +14,7 @@
     <section class="top-bar horizontal">
       <ul class="horizontal top-menu">
         <li>
-          <a href="./index.php"><img src="./resources/logo-dark.svg" alt="Logo"></a>
+          <a href="./index.php"><img src="./resources/logo-black.svg" alt="Diskuti's logo"></a>
         </li>
         <li>
           <h1>Quizz Name</h1>
