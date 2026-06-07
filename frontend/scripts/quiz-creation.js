@@ -292,14 +292,7 @@ publish_button.addEventListener("click", function(){
     }
   }
 
-  let cookies = document.cookie.split(";"); // Gets cookies and splits them per cookie
-                                            // Each cookie is composed of cookiename=value; cookiename2=value2; etc.
-  cookies.forEach(c =>{
-    let pair = c.split("="); // Makes the pair being [0]=cookiename && [1]=value
-    if (pair[0].trim() == 'usremail'){
-      quiz_json.owner = decodeURIComponent(pair[1]);
-    }
-  });
+  quiz_json.owner = localStorage.getItem('usremail');
   
   publish_quiz();
   

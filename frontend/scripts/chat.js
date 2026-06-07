@@ -1,15 +1,55 @@
 let chat_channel = null;
+let usr_email = localStorage.getItem('usremail');
 const pusher = new Pusher('7766683cddcebf443da1', { cluster: 'eu' });
-let usr_email = '';
-let cookies = document.cookie.split(';');
-let chatId = 1;
+let chatId = null;
 
-cookies.forEach(c => {
-    let pair = c.split("="); // Makes the pair being [0]=cookiename && [1]=value
-    if (pair[0].trim() == 'usremail'){
-      usr_email = decodeURIComponent(pair[1]);
-    }
+console.log("Email: ", usr_email);
+
+fetch("backend/get-chats.php", {
+  method: "POST",
+  headers: {'Content-Type': 'application/json'},
+  body: JSON.stringify({ user_email: usr_email })
+})
+.then(response => response.json())
+.then(data => {
+  console.log(data);  
+  const chat_area = document.querySelector('.chat-area');
+  const ul = document.createElement('ul');
+  ul.classList.add('contact-list');
+  let li_list = [];
+  for(chat of data.chats){
+    const li = document.createElement('li');
+    
+    const email_span = document.createElement('span');
+    email_span.textContent = chat['user_email'];
+    email_span.classList.add('email-span');
+    
+    const name_span = document.createElement('span');
+    name_span.textContent = chat['user_name'];
+    name_span.classList.add('name-span');
+
+    li.classList.add('chat-contact');
+    li.setAttribute('chat_id', chat['chat_id']);
+    li.setAttribute('user_name', chat['user_name']);
+    li.appendChild(name_span);
+    li.appendChild(email_span);
+    ul.appendChild(li);
+    li.addEventListener('click', () => {
+      chat_area.innerHTML = "";
+      chatId = li.getAttribute('chat_id');
+      chatConnect(chatId);
+      loadMessages(chatId);
+      document.querySelector('.write-box').classList.remove('hide');
+      document.querySelector('.chat-title').textContent = li.getAttribute('user_name');
+    });
+    chat_area.append(ul);
+    const sep = document.createElement('div');
+    sep.classList.add('separator');
+    chat_area.append(sep);
+  }
+
 });
+
 
 function chatConnect(chatId) {
     // If we are bound to a chat, finish that connection
@@ -60,7 +100,7 @@ function renderMessage(data){
 }
 
 async function loadMessages(chatId) {
-  const res = await fetch('../backend/get-messages.php', {
+  const res = await fetch('backend/get-messages.php', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
@@ -87,7 +127,7 @@ send_btn.addEventListener('click', async () => {
   let text = document.querySelector('#message-input').value;
 
   if(text.trim().length){
-    let data = await fetch('../backend/send-message.php', {
+    let data = await fetch('backend/send-message.php', {
       method: 'POST',
       body: JSON.stringify({
         chat_id: chatId,
@@ -102,6 +142,3 @@ send_btn.addEventListener('click', async () => {
 
 
 });
-
-loadMessages(chatId);
-chatConnect(chatId);

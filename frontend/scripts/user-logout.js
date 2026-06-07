@@ -42,6 +42,7 @@ account_btn.addEventListener("click", function(){
         separator.classList.add("separator-div");
 
         logout_button.addEventListener("click", function(){
+            localStorage.removeItem('usremail');
             window.location.href = "../backend/user-logout.php?logout=1";
         })
 
