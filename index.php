@@ -53,7 +53,9 @@
     </section>
     <section class="chatbar vertical">
       <div class="box">
-        <h1 class="chat-title">Chat</h1>
+        <div class="chat-title">
+          <h1 class="title-text">Chats</h1>
+        </div>
         <div class="separator"></div>
         <div class="chat-area">
         </div>

@@ -40,7 +40,26 @@ fetch("backend/get-chats.php", {
       chatConnect(chatId);
       loadMessages(chatId);
       document.querySelector('.write-box').classList.remove('hide');
-      document.querySelector('.chat-title').textContent = li.getAttribute('user_name');
+      const chat_title = document.querySelector('.chat-title');
+      document.querySelector('.title-text').textContent = li.getAttribute('user_name');
+
+      const back_button = document.createElement('button');
+      back_button.classList.add('back-button');
+      back_button.textContent = '<';
+
+      back_button.addEventListener('click', () => {
+        chat_area.innerHTML = "";
+        chat_area.append(ul);
+        const sep = document.createElement('div');
+        sep.classList.add('separator');
+        chat_area.append(sep);
+        document.querySelector('.write-box').classList.toggle('hide');
+        chat_title.removeChild(back_button);
+        document.querySelector('.title-text').textContent = 'Chats';
+      });
+
+      chat_title.append(back_button);
+
     });
     chat_area.append(ul);
     const sep = document.createElement('div');
