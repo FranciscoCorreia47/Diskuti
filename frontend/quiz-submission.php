@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="./styles/styles.css">
     <link rel="stylesheet" href="./styles/quiz-creation.css">
     <link rel="stylesheet" href="./styles/quiz-submission.css">
+    <link rel="icon" type="image/png" href="./resources/diskuti-icon.png">
     <script src="https://kit.fontawesome.com/c818a7c46a.js" crossorigin="anonymous"></script>
     <title>Diskuti | Quiz Submission</title>
 </head>

@@ -129,6 +129,7 @@ input[type="button"]:hover {
 }
 
 .toggle-password {
+    width: 50%;
     position: absolute;
     top: 35%;
     right: 4%;

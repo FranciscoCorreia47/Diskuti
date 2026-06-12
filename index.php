@@ -17,9 +17,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="frontend/styles/reset.css">
-  <link rel="stylesheet" type="text/css" href="frontend/styles/styles.css">
-  <link rel="stylesheet" type="text/css" href="frontend/styles/main.css">
+  <link rel="stylesheet" type="text/css" href="./styles/reset.css">
+  <link rel="stylesheet" type="text/css" href="./styles/styles.css">
+  <link rel="stylesheet" type="text/css" href="./styles/main.css">
+  <link rel="stylesheet" type="text/css" href="./styles/search-quiz.css">
+  <link rel="icon" type="image/png" href="./resources/diskuti-icon.png">
+  <script src="https://kit.fontawesome.com/c818a7c46a.js" crossorigin="anonymous"></script>
   <script src="https://js.pusher.com/8.0.1/pusher.min.js"></script>
   <title>Diskuti | Home</title>
 </head>
@@ -47,8 +50,9 @@
       <img src="frontend/resources/logo.svg" alt="Logo">
     </section>
     <section class="search">
-      <div class="bar">
-        <input type="text" name="search" id="search-bar" placeholder="Search for topic">
+      <div class="bar search-input">
+        <input type="text" name="search" class="search-bar" placeholder="Search for topic">
+        <span class="fa-solid fa-magnifying-glass search-btn"></span>
       </div>
     </section>
     <section class="chatbar vertical">
@@ -75,10 +79,23 @@
       <div class="logout-div"></div>
     </section>
     <section class="foot">Footer</section>
+    <section class="search-box" data-user-id="<?php echo $_SESSION['id'] ?>">
+      <div class="search-area">
+        <div class="search-header">
+          <img src="./resources/logo.svg" alt="Logo">
+          <div class="search-input">
+              <input type="text" name="search" class="search-bar" placeholder="Search for topic">
+              <span class="fa-solid fa-magnifying-glass search-btn"></span>
+          </div>
+        </div>
+        <div class="search-results"></div>
+      </div>
+    </section>
   </main>
   <script src="frontend/scripts/trending-quizzes.js"></script>
   <script src="frontend/scripts/main.js"></script>
   <script src="frontend/scripts/user-logout.js"></script>
   <script src="frontend/scripts/chat.js"></script>
+  <script src="frontend/scripts/search-quiz.js"></script>
 </body>
 </html>

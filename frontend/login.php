@@ -9,6 +9,7 @@
   <link rel="stylesheet" type="text/css" href="./styles/reset.css">
   <link rel="stylesheet" type="text/css" href="./styles/login.css">
   <link rel="stylesheet" type="text/css" href="./styles/styles.css">
+  <link rel="icon" type="image/png" href="./resources/diskuti-icon.png">
   <script src="https://kit.fontawesome.com/c818a7c46a.js" crossorigin="anonymous"></script>
   <title>Diskuti | Login</title>
 </head>
