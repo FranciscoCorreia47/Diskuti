@@ -55,6 +55,7 @@
       <div class="box">
         <div class="chat-title">
           <h1 class="title-text">Chats</h1>
+          <button class="new-chat show"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M19 11h-6V5a1 1 0 0 0-2 0v6H5a1 1 0 0 0 0 2h6v6a1 1 0 0 0 2 0v-6h6a1 1 0 0 0 0-2"/></svg></button>
         </div>
         <div class="separator"></div>
         <div class="chat-area">

@@ -3,6 +3,9 @@ let usr_email = localStorage.getItem('usremail');
 const pusher = new Pusher('7766683cddcebf443da1', { cluster: 'eu' });
 let chatId = null;
 
+let chats = [];
+let ul;
+
 console.log("Email: ", usr_email);
 
 fetch("backend/get-chats.php", {
@@ -14,10 +17,11 @@ fetch("backend/get-chats.php", {
 .then(data => {
   console.log(data);  
   const chat_area = document.querySelector('.chat-area');
-  const ul = document.createElement('ul');
+  ul = document.createElement('ul');
   ul.classList.add('contact-list');
   let li_list = [];
-  for(chat of data.chats){
+  chats = data.chats;
+  for(chat of chats){
     const li = document.createElement('li');
     
     const email_span = document.createElement('span');
@@ -159,5 +163,62 @@ send_btn.addEventListener('click', async () => {
     console.log(data);
   }
 
+});
+
+
+
+
+
+/*
+  NEW CHAT LOGIC
+*/
+const new_chat_btn = document.querySelector('.new-chat');
+new_chat_btn.addEventListener('click', () => {
+  const chat_area = document.querySelector('.chat-area');
+  chat_area.innerHTML = "";
+  const chat_title = document.querySelector('.chat-title');
+  const title_text = chat_title.querySelector('.title-text');
+  const search_bar = document.createElement('input');
+  search_bar.type = 'text';
+  search_bar.placeholder = 'Search for email';
+
+  chat_title.innerHTML = "";
+  chat_title.classList.add('search');
+  const bar = document.createElement('div');
+  bar.classList.add('bar');
+  bar.append(search_bar);
+  chat_title.append(bar);
+  new_chat_btn.classList.remove('show');
+
+  const back_button = document.createElement('button');
+  back_button.classList.add('back-button');
+  back_button.textContent = '<';
+
+  back_button.addEventListener('click', () => {
+    chat_area.innerHTML = "";
+    chat_area.append(ul);
+    const sep = document.createElement('div');
+    sep.classList.add('separator');
+    chat_area.append(sep);
+    chat_title.removeChild(back_button);
+    chat_title.removeChild(bar);
+    title_text.textContent = "Chats";
+    chat_title.append(title_text);
+    new_chat_btn.classList.add('show');
+    chat_title.append(new_chat_btn);
+    chat_title.classList.remove('search');
+  });
+
+  chat_title.append(back_button);
+
+  search_bar.addEventListener('change', () => {
+    fetch('backend/get-users.php')
+    .then(res => res.json())
+    .then(data => {
+      for (let usr of data){
+        
+      }
+    });
+  });
 
 });

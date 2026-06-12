@@ -45,12 +45,9 @@ main {
   list-style: none;
 }
 
-.menu-item>svg {
+.menu-item>svg, .menu-item>a {
   color: #e03160;
-}
-
-.menu-item>a {
-  color: #e03160;
+  transition: all 0.5s ease;
 }
 
 .bar {
@@ -82,7 +79,12 @@ main {
 .menu-item:hover {
   box-shadow: #aaa 1px 1px 8px;
   transform: scale(1.1);
+  background-color: #e03160;
   cursor: pointer;
+}
+
+.menu-item:hover>a, .menu-item:hover>svg {
+  color: #f5f5f5;
 }
 
 .feed {
@@ -202,6 +204,32 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.chat-title.search>.bar {
+  border: none;
+  width: 5rem
+}
+
+.new-chat {
+  display: none;
+  outline: none;
+  box-shadow: #aaa 1px 1px 5px;
+  color: #e03160;
+  border: none;
+  border-radius: 5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-right: 0.5rem;
+  transition: all 0.5s ease;
+}
+
+.new-chat:hover {
+  box-shadow: #aaa 1px 1px 8px;
+  transform: scale(1.1);
+  background-color: #e03160;
+  color: #f5f5f5;
+  cursor: pointer;
 }
 
 .back-button {
