@@ -4,7 +4,8 @@ const pusher = new Pusher('7766683cddcebf443da1', { cluster: 'eu' });
 let chatId = null;
 
 let chats = [];
-let ul;
+let ul = document.createElement('ul');
+ul.classList.add('contact-list');
 
 console.log("Email: ", usr_email);
 
@@ -17,8 +18,6 @@ fetch("backend/get-chats.php", {
 .then(data => {
   console.log(data);  
   const chat_area = document.querySelector('.chat-area');
-  ul = document.createElement('ul');
-  ul.classList.add('contact-list');
   let li_list = [];
   chats = data.chats;
   for(chat of chats){
@@ -212,11 +211,37 @@ new_chat_btn.addEventListener('click', () => {
   chat_title.append(back_button);
 
   search_bar.addEventListener('change', () => {
-    fetch('backend/get-users.php')
+    const email = search_bar.value.trim();
+
+    if(!email.length) return;
+
+    fetch('backend/search-users.php', {
+      method: 'POST',
+      body: JSON.stringify({
+        search_text: email
+      })
+    })
     .then(res => res.json())
     .then(data => {
       for (let usr of data){
+        const contact = document.createElement('div');
+        const li = document.createElement('li');
+    
+        const email_span = document.createElement('span');
+        email_span.textContent = usr['email'];
+        email_span.classList.add('email-span');
         
+        const name_span = document.createElement('span');
+        name_span.textContent = usr['full_name'];
+        name_span.classList.add('name-span');
+
+        li.classList.add('chat-contact');
+        li.setAttribute('user_name', usr['user_email']);
+        li.appendChild(name_span);
+        li.appendChild(email_span);
+        ul.appendChild(li);
+
+        /* Click to add + backend logic left to do */
       }
     });
   });
