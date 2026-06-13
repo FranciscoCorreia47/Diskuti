@@ -1,4 +1,5 @@
 const search_bars = document.querySelectorAll(".search-bar");
+const search_box = document.querySelector(".search-box");
 
 for(let input of search_bars){
     const search_btn = input.parentElement.querySelector(".search-btn");
@@ -7,7 +8,6 @@ for(let input of search_bars){
         const search_text = input.value.trim();
 
         if(search_text != ""){
-            const search_box = document.querySelector(".search-box");
             search_box.classList.add("open-search-box");
             
             const search_results = document.querySelector(".search-results");
@@ -25,6 +25,13 @@ for(let input of search_bars){
             })
             .then(response => response.json())
             .then(data => {
+                if (data.length == 1){
+                    search_results.style.justifyContent = "flex-start";
+                }
+                else{
+                    search_results.style.justifyContent = "space-evenly";
+                }
+
                 for (let quiz of data){
                     const item_box = document.createElement("div");
                     const feed_item = document.createElement("div");
@@ -78,10 +85,15 @@ for(let input of search_bars){
     })
 }
 
-const search = document.querySelector(".search-box");
+const close_search_box = document.querySelector("#close-search-box");
+if(close_search_box){
+    close_search_box.addEventListener("click", function(){
+        search_box.classList.remove("open-search-box");
+    })
+}
 
-search.addEventListener("click", function(event) {
-    if (event.target === search) {
-        search.classList.remove("open-search-box");
+search_box.addEventListener("click", function(event) {
+    if (event.target === search_box) {
+        search_box.classList.remove("open-search-box");
     }
 });

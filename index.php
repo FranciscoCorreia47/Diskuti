@@ -84,6 +84,7 @@
               <input type="text" name="search" class="search-bar" placeholder="Search for topic">
               <span class="fa-solid fa-magnifying-glass search-btn"></span>
           </div>
+          <span class="fa-solid fa-x" id="close-search-box"></span>
         </div>
         <div class="search-results"></div>
       </div>

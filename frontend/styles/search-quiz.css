@@ -92,6 +92,7 @@
     align-items: center;
     gap: 1.5vw;
     align-self: center;
+    position: relative;
 }
 
 .search-area .search-header img {
@@ -116,4 +117,12 @@
 
 .search-img {
     width: 12vw;
+}
+
+#close-search-box {
+    position: absolute;
+    right: 0;
+    color: #31e0b1;
+    cursor: pointer;
+    font-size: 1.3rem;
 }

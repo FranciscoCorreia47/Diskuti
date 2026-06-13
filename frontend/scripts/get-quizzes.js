@@ -9,6 +9,13 @@ fetch(`../backend/get-quizzes.php?user-id=${user_id}`)
     const search_input = document.querySelector("#search-bar");
     const search_btn = document.querySelector("#search-btn");
 
+    if(data.length == 1){
+        quizzes_list.style.justifyContent = "flex-start";
+    }
+    else{
+        quizzes_list.style.justifyContent = "space-evenly";
+    }
+
     search_box.addEventListener("click", function(event){
         if(event.target.classList.contains("fa-magnifying-glass")){
             event.target.remove();
@@ -124,13 +131,13 @@ fetch(`../backend/get-quizzes.php?user-id=${user_id}`)
                             user_comment.classList.add("user-comment");
                             
                             comment_body.appendChild(user_comment);
-
-                            const comment_separator = document.createElement("div");
-                            comment_separator.classList.add("comment-separator");
-
-                            comment_body.appendChild(comment_separator);
-
                             comments_displayed += 1;
+
+                            if(comments_displayed < Object.values(quiz.comments).length){
+                                const comment_separator = document.createElement("div");
+                                comment_separator.classList.add("comment-separator");
+                                comment_body.appendChild(comment_separator);
+                            }
                         }
 
                         if(comment_body.childElementCount == 0){
@@ -167,6 +174,13 @@ fetch(`../backend/get-quizzes.php?user-id=${user_id}`)
                     quiz_box.appendChild(quiz_statistics);
 
                     quizzes_list.appendChild(quiz_box);
+
+                    if(quizzes_list.childElementCount === 1){
+                        quizzes_list.style.justifyContent = "flex-start";
+                    }
+                    else{
+                        quizzes_list.style.justifyContent = "space-evenly";
+                    }
                 }
             }
             
@@ -190,6 +204,8 @@ fetch(`../backend/get-quizzes.php?user-id=${user_id}`)
         }
         
         else if(event.target.classList.contains("fa-x")){
+            quizzes_list.style.justifyContent = "space-evenly";
+
             search_input.value = "";
             event.target.remove()
             const new_search_btn = document.createElement("span");
@@ -300,13 +316,13 @@ fetch(`../backend/get-quizzes.php?user-id=${user_id}`)
                         user_comment.classList.add("user-comment");
                         
                         comment_body.appendChild(user_comment);
-
-                        const comment_separator = document.createElement("div");
-                        comment_separator.classList.add("comment-separator");
-
-                        comment_body.appendChild(comment_separator);
-
                         comments_displayed += 1;
+
+                        if(comments_displayed < Object.values(quiz.comments).length){
+                            const comment_separator = document.createElement("div");
+                            comment_separator.classList.add("comment-separator");
+                            comment_body.appendChild(comment_separator);
+                        }
                     }
 
                     if(comment_body.childElementCount == 0){
@@ -463,13 +479,13 @@ fetch(`../backend/get-quizzes.php?user-id=${user_id}`)
                 user_comment.classList.add("user-comment");
                 
                 comment_body.appendChild(user_comment);
-
-                const comment_separator = document.createElement("div");
-                comment_separator.classList.add("comment-separator");
-
-                comment_body.appendChild(comment_separator);
-
                 comments_displayed += 1;
+
+                if(comments_displayed < Object.values(quiz.comments).length){
+                    const comment_separator = document.createElement("div");
+                    comment_separator.classList.add("comment-separator");
+                    comment_body.appendChild(comment_separator);
+                }
             }
 
             if(comment_body.childElementCount == 0){
