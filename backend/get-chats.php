@@ -2,7 +2,24 @@
 
 require_once('config.php');
 
-if($_SERVER['REQUEST_METHOD'] == "POST"){
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+  header("Access-Control-Allow-Methods: POST, OPTIONS");
+  header("Access-Control-Allow-Headers: Content-Type");
+  http_response_code(200);
+  echo json_encode(['status' => 'ok']);
+  exit;
+}
+
+if($_SERVER['REQUEST_METHOD'] !== "POST"){
+  http_response_code(405);
+  echo json_encode([
+    'status' => 'error',
+    'message' => "Invalid method",
+    'received_method' => $_SERVER['REQUEST_METHOD']
+  ]);
+  exit;
+}
+
   $json = file_get_contents('php://input');
   $requestData = json_decode($json, true);
 
@@ -94,9 +111,3 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
   http_response_code(200);
   echo json_encode(['status' => 'success', 'chats' => $chat_info]);
   exit;
-
-} else {
-  http_response_code(405);
-  echo json_encode(['status' => 'error', 'message' => "Invalid method"]);
-  exit;
-}

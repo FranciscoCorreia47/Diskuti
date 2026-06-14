@@ -17,11 +17,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="./styles/reset.css">
-  <link rel="stylesheet" type="text/css" href="./styles/styles.css">
-  <link rel="stylesheet" type="text/css" href="./styles/main.css">
-  <link rel="stylesheet" type="text/css" href="./styles/search-quiz.css">
-  <link rel="icon" type="image/png" href="./resources/diskuti-icon.png">
+  <link rel="stylesheet" type="text/css" href="frontend/styles/reset.css">
+  <link rel="stylesheet" type="text/css" href="frontend/styles/styles.css">
+  <link rel="stylesheet" type="text/css" href="frontend/styles/main.css">
+  <link rel="stylesheet" type="text/css" href="frontend/styles/search-quiz.css">
+  <link rel="icon" type="image/png" href="frontend/resources/diskuti-icon.png">
   <script src="https://kit.fontawesome.com/c818a7c46a.js" crossorigin="anonymous"></script>
   <script src="https://js.pusher.com/8.0.1/pusher.min.js"></script>
   <title>Diskuti | Home</title>
@@ -82,7 +82,7 @@
     <section class="search-box" data-user-id="<?php echo $_SESSION['id'] ?>">
       <div class="search-area">
         <div class="search-header">
-          <img src="./resources/logo.svg" alt="Logo">
+          <img src="frontend/resources/logo.svg" alt="Logo">
           <div class="search-input">
               <input type="text" name="search" class="search-bar" placeholder="Search for topic">
               <span class="fa-solid fa-magnifying-glass search-btn"></span>

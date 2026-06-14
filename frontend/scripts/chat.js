@@ -4,29 +4,25 @@ const pusher = new Pusher('7766683cddcebf443da1', { cluster: 'eu' });
 let chatId = null;
 
 let chats = [];
-let ul = document.createElement('ul');
-ul.classList.add('contact-list');
+let chatsUl = null; // will hold the main chats list element
 
 console.log("Email: ", usr_email);
 
-fetch("backend/get-chats.php", {
-  method: "POST",
-  headers: {'Content-Type': 'application/json'},
-  body: JSON.stringify({ user_email: usr_email })
-})
-.then(response => response.json())
-.then(data => {
-  console.log(data);  
+function renderChatList(chatArray) {
   const chat_area = document.querySelector('.chat-area');
-  let li_list = [];
-  chats = data.chats;
-  for(chat of chats){
+  chat_area.innerHTML = "";
+
+  chats = Array.isArray(chatArray) ? chatArray : [chatArray, ];
+  chatsUl = document.createElement('ul');
+  chatsUl.classList.add('contact-list');
+
+  for (const chat of chats) {
     const li = document.createElement('li');
-    
+
     const email_span = document.createElement('span');
     email_span.textContent = chat['user_email'];
     email_span.classList.add('email-span');
-    
+
     const name_span = document.createElement('span');
     name_span.textContent = chat['user_name'];
     name_span.classList.add('name-span');
@@ -34,15 +30,22 @@ fetch("backend/get-chats.php", {
     li.classList.add('chat-contact');
     li.setAttribute('chat_id', chat['chat_id']);
     li.setAttribute('user_name', chat['user_name']);
+    li.setAttribute('user_email', chat['user_email']);
     li.appendChild(name_span);
     li.appendChild(email_span);
-    ul.appendChild(li);
+    chatsUl.appendChild(li);
+
+    const sep = document.createElement('div');
+    sep.classList.add('separator');
+    chatsUl.appendChild(sep);
+
     li.addEventListener('click', () => {
       chat_area.innerHTML = "";
       chatId = li.getAttribute('chat_id');
       chatConnect(chatId);
       loadMessages(chatId);
       document.querySelector('.write-box').classList.remove('hide');
+      document.querySelector('.new-chat').classList.remove('show');
       const chat_title = document.querySelector('.chat-title');
       document.querySelector('.title-text').textContent = li.getAttribute('user_name');
 
@@ -52,8 +55,9 @@ fetch("backend/get-chats.php", {
 
       back_button.addEventListener('click', () => {
         chat_area.innerHTML = "";
-        chat_area.append(ul);
+        chat_area.append(chatsUl);
         const sep = document.createElement('div');
+        document.querySelector('.new-chat').classList.add('show');
         sep.classList.add('separator');
         chat_area.append(sep);
         document.querySelector('.write-box').classList.toggle('hide');
@@ -62,16 +66,34 @@ fetch("backend/get-chats.php", {
       });
 
       chat_title.append(back_button);
-
     });
-    chat_area.append(ul);
-    const sep = document.createElement('div');
-    sep.classList.add('separator');
-    chat_area.append(sep);
   }
 
-});
+  chat_area.append(chatsUl);
+}
 
+fetch("backend/get-chats.php", {
+  method: "POST",
+  headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+  body: JSON.stringify({ user_email: usr_email })
+})
+.then(response => response.json())
+.then(data => renderChatList(data.chats));
+
+
+function restoreChatListHeader() {
+  const chat_title = document.querySelector('.chat-title');
+  chat_title.innerHTML = "";
+
+  const title_text = document.createElement('h1');
+  title_text.classList.add('title-text');
+  title_text.textContent = 'Chats';
+  chat_title.append(title_text);
+  chat_title.append(new_chat_btn);
+  new_chat_btn.classList.add('show');
+  chat_title.classList.remove('search');
+  document.querySelector('.write-box').classList.add('hide');
+}
 
 function chatConnect(chatId) {
     // If we are bound to a chat, finish that connection
@@ -124,7 +146,7 @@ function renderMessage(data){
 async function loadMessages(chatId) {
   const res = await fetch('backend/get-messages.php', {
     method: 'POST',
-    headers: {'Content-Type': 'application/json'},
+    headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
     body: JSON.stringify({
       chat_id: chatId,
       user_email: usr_email
@@ -151,6 +173,7 @@ send_btn.addEventListener('click', async () => {
   if(text.trim().length){
     let data = await fetch('backend/send-message.php', {
       method: 'POST',
+      headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
       body: JSON.stringify({
         chat_id: chatId,
         text: text.trim(),
@@ -195,7 +218,7 @@ new_chat_btn.addEventListener('click', () => {
 
   back_button.addEventListener('click', () => {
     chat_area.innerHTML = "";
-    chat_area.append(ul);
+    chat_area.append(chatsUl);
     const sep = document.createElement('div');
     sep.classList.add('separator');
     chat_area.append(sep);
@@ -210,19 +233,31 @@ new_chat_btn.addEventListener('click', () => {
 
   chat_title.append(back_button);
 
-  search_bar.addEventListener('change', () => {
+  search_bar.addEventListener('keydown', (e) => {
+    // Only run the code if the user specifically pressed the Enter key
+    if (e.key !== 'Enter') return;
+
     const email = search_bar.value.trim();
 
-    if(!email.length) return;
+    if (!email.length) return;
+
+    // Clear previous search results so they don't stack up
+    const searchUl = document.createElement('ul');
+    searchUl.classList.add('contact-list');
 
     fetch('backend/search-users.php', {
       method: 'POST',
+      headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
       body: JSON.stringify({
         search_text: email
       })
     })
     .then(res => res.json())
     .then(data => {
+      if (!data){
+        chat_area.append("No users found that match");
+        return;
+      }
       for (let usr of data){
         const contact = document.createElement('div');
         const li = document.createElement('li');
@@ -235,13 +270,50 @@ new_chat_btn.addEventListener('click', () => {
         name_span.textContent = usr['full_name'];
         name_span.classList.add('name-span');
 
+        const sep = document.createElement('div');
+        sep.classList.add('separator');
+
         li.classList.add('chat-contact');
-        li.setAttribute('user_name', usr['user_email']);
+        li.setAttribute('user_email', usr['email']);
         li.appendChild(name_span);
         li.appendChild(email_span);
-        ul.appendChild(li);
+        searchUl.appendChild(li);
+        searchUl.appendChild(sep);
+        chat_area.append(searchUl);
 
-        /* Click to add + backend logic left to do */
+        li.addEventListener('click', () => {
+          fetch('backend/add-chat.php', {
+            method: "POST",
+            headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+            body: JSON.stringify({
+              emails: [
+                li.getAttribute('user_email'),
+                localStorage.getItem('usremail')
+              ]
+            })
+          })
+          .then(res => {
+            if (!res.ok) {
+              return res.text().then(text => {
+                throw new Error(`add-chat failed ${res.status}: ${text}`);
+              });
+            }
+            return res.json();
+          })
+          .then(() => {
+            return fetch('backend/get-chats.php', {
+              method: "POST",
+              headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+              body: JSON.stringify({ user_email: usr_email })
+            });
+          })
+          .then(res => res.json())
+          .then(data => {
+            renderChatList(data.chats);
+            restoreChatListHeader();
+          })
+          .catch(console.error);
+        });
       }
     });
   });
