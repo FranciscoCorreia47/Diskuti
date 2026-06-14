@@ -1,3 +1,27 @@
+function convertDate(date_structure){
+    let date = "";
+    let time = "";
+    let day = "";
+    let month = "";
+    let year = "";
+    let secs = "";
+    let mins = "";
+    let hours = "";
+
+    if(date_structure.includes(" ")){
+        let [date, time] = date_structure.split(" ");
+        let [year, month, day] = date.split("-");
+        let [hours, mins, secs] = time.split(":");
+
+        return `${day}/${month}/${year} ${hours}:${mins}`;
+    }
+    else{
+        let [year, month, day] = date_structure.split("-");
+
+        return `${day}/${month}/${year}`;
+    }
+}
+
 fetch("backend/trending-quizzes.php")
 .then(response => response.json())
 .then(data => {
@@ -16,7 +40,7 @@ fetch("backend/trending-quizzes.php")
         feed_item.style.backgroundImage = `url(backend/${banner})`;
         feed_item.setAttribute('quiz-id', quiz["id"]);
         name_span.textContent = name;
-        quiz_details.textContent = `${user_full_name} • ${creation_date}`;
+        quiz_details.textContent = `${user_full_name} • ${convertDate(creation_date)}`;
 
         item_box.classList.add("item-box");
         feed_item.classList.add("feed-item");
