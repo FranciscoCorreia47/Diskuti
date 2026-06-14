@@ -22,6 +22,7 @@
     <link rel="stylesheet" type="text/css" href="./styles/styles.css">
     <link rel="stylesheet" type="text/css" href="./styles/main.css">
     <link rel="stylesheet" type="text/css" href="./styles/my-quizzes.css">
+    <link rel="stylesheet" type="text/css" href="./styles/footer.css">
     <link rel="icon" type="image/png" href="./resources/diskuti-icon.png">
     <script src="https://kit.fontawesome.com/c818a7c46a.js" crossorigin="anonymous"></script>
     <title>Diskuti | My Quizzes</title>
@@ -68,6 +69,7 @@
              </div>
         </section>
     </main>
+    <?php include "footer.php"?>
 
     <script src="./scripts/get-quizzes.js"></script>
 </body>

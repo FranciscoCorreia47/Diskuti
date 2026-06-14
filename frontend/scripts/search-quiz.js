@@ -1,6 +1,30 @@
 const search_bars = document.querySelectorAll(".search-bar");
 const search_box = document.querySelector(".search-box");
 
+function convertDate(date_structure){
+    let date = "";
+    let time = "";
+    let day = "";
+    let month = "";
+    let year = "";
+    let secs = "";
+    let mins = "";
+    let hours = "";
+
+    if(date_structure.includes(" ")){
+        let [date, time] = date_structure.split(" ");
+        let [year, month, day] = date.split("-");
+        let [hours, mins, secs] = time.split(":");
+
+        return `${day}/${month}/${year} ${hours}:${mins}`;
+    }
+    else{
+        let [year, month, day] = date_structure.split("-");
+
+        return `${day}/${month}/${year}`;
+    }
+}
+
 for(let input of search_bars){
     const search_btn = input.parentElement.querySelector(".search-btn");
 
@@ -41,7 +65,7 @@ for(let input of search_bars){
                     feed_item.style.backgroundImage = `url(backend/${quiz["banner"]})`;
                     feed_item.setAttribute('quiz-id', quiz["id"]);
                     name_span.textContent = quiz["name"];
-                    quiz_details.textContent = `${quiz["user_full_name"]} • ${quiz["creation_date"]}`;
+                    quiz_details.textContent = `${quiz["user_full_name"]} • ${convertDate(quiz["creation_date"])}`;
 
                     item_box.classList.add("item-box");
                     feed_item.classList.add("feed-item");

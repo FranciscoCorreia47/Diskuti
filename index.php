@@ -21,6 +21,7 @@
   <link rel="stylesheet" type="text/css" href="frontend/styles/styles.css">
   <link rel="stylesheet" type="text/css" href="frontend/styles/main.css">
   <link rel="stylesheet" type="text/css" href="frontend/styles/search-quiz.css">
+  <link rel="stylesheet" type="text/css" href="frontend/styles/footer.css">
   <link rel="icon" type="image/png" href="frontend/resources/diskuti-icon.png">
   <script src="https://kit.fontawesome.com/c818a7c46a.js" crossorigin="anonymous"></script>
   <script src="https://js.pusher.com/8.0.1/pusher.min.js"></script>
@@ -75,7 +76,6 @@
     <section class="logout-section">
       <div class="logout-div"></div>
     </section>
-    <section class="foot">Footer</section>
     <section class="search-box" data-user-id="<?php echo $_SESSION['id'] ?>">
       <div class="search-area">
         <div class="search-header">
@@ -89,7 +89,10 @@
         <div class="search-results"></div>
       </div>
     </section>
+
+    <section class="foot"><?php include "frontend/footer.php" ?></section>
   </main>
+
   <script src="frontend/scripts/trending-quizzes.js"></script>
   <script src="frontend/scripts/main.js"></script>
   <script src="frontend/scripts/user-logout.js"></script>
