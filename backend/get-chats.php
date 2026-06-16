@@ -65,12 +65,7 @@ if($_SERVER['REQUEST_METHOD'] !== "POST"){
   }
   $res = $sql->get_result();
 
-  if(mysqli_num_rows($res) < 1){
-    http_response_code(400);
-    echo json_encode(['status' => 'error', 'message' => 'Non existing user']);
-    exit;
-  }
-
+  $enrolled_chats = [];
   foreach($res as $r){
     $enrolled_chats[] = $r["chat_id"];
   }

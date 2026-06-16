@@ -285,7 +285,7 @@ publish_button.addEventListener("click", function(){
           throw new Error(`Backend gave status ${res.status }`)
         return res.json();
       })
-      .then(data => console.log(data));
+      .then(data => {return true});
 
     } catch (error) {
       console.error("Network or parsing error:", error);
@@ -293,7 +293,9 @@ publish_button.addEventListener("click", function(){
   }
 
   quiz_json.owner = localStorage.getItem('usremail');
+  // quiz_json.description = document.querySelector('.text-input').value.trim();
   
-  publish_quiz();
+  if(publish_quiz())
+    window.location.href = '../index.php';
   
 });

@@ -71,7 +71,7 @@ function renderChatList(chatArray) {
 
   chat_area.append(chatsUl);
 }
-
+console.log("fetching get-chats", usr_email);
 fetch("backend/get-chats.php", {
   method: "POST",
   headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
@@ -301,6 +301,7 @@ new_chat_btn.addEventListener('click', () => {
             return res.json();
           })
           .then(() => {
+            console.log("fetching get-chats", usr_email);
             return fetch('backend/get-chats.php', {
               method: "POST",
               headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
