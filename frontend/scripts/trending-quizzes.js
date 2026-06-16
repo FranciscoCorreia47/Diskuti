@@ -1,4 +1,4 @@
-fetch("../backend/trending-quizzes.php")
+fetch("backend/trending-quizzes.php")
 .then(response => response.json())
 .then(data => {
     for(quiz of data){
@@ -13,7 +13,7 @@ fetch("../backend/trending-quizzes.php")
         const name_span = document.createElement("span");
         const quiz_details = document.createElement("span");
 
-        feed_item.style.backgroundImage = `url(../backend/${banner})`;
+        feed_item.style.backgroundImage = `url(backend/${banner})`;
         feed_item.setAttribute('quiz-id', quiz["id"]);
         name_span.textContent = name;
         quiz_details.textContent = `${user_full_name} • ${creation_date}`;

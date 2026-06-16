@@ -150,7 +150,7 @@ fetch(`../backend/entire-quizzes.php?quiz-id=${quiz_id}`)
         
         result_intro.textContent = "Let's see your final result";
         if(result >= 0)
-            final_grade.textContent = `${result}`;
+            final_grade.textContent = `${result.toFixed(0)}`;
         else
             final_grade.textContent = "0";
 
@@ -246,6 +246,6 @@ fetch(`../backend/entire-quizzes.php?quiz-id=${quiz_id}`)
     })
 
     return_btn.addEventListener("click", function(){
-        window.location.href = "./index.php";
+        window.location.href = "../index.php";
     })
 })
