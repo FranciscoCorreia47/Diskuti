@@ -24,8 +24,10 @@ const email = document.querySelector("#email");
 const password = document.querySelector("#password");
 
 
-login_btn.addEventListener("click", function(){
-    if(email.value != "" && password.value != ""){
+login_btn.addEventListener("click", function(event){
+    event.preventDefault();
+    const emailtxt = email.value.trim();
+    if(emailtxt != "" && password.value.trim() != ""){
         fetch("../backend/user-login.php", {
             method: "POST",
             body: new FormData(document.querySelector("#login-form"))
@@ -34,13 +36,7 @@ login_btn.addEventListener("click", function(){
         .then(data => {
             console.log("Login response:", data);
             if(data.trim() === "ok"){
-                const cookieValue = email.value.trim();
-                console.log("Setting cookie with:", cookieValue);
-                if (cookieValue) {
-                    document.cookie = `usremail=${encodeURIComponent(cookieValue)}; path=/; max-age=86400; SameSite=Strict`;
-                } else {
-                    console.error("Email is empty, cannot set cookie");
-                }
+                localStorage.setItem('usremail', emailtxt)
                 window.location.href = "/";
             }
             else{

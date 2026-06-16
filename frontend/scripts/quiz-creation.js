@@ -285,22 +285,17 @@ publish_button.addEventListener("click", function(){
           throw new Error(`Backend gave status ${res.status }`)
         return res.json();
       })
-      .then(data => console.log(data));
+      .then(data => {return true});
 
     } catch (error) {
       console.error("Network or parsing error:", error);
     }
   }
 
-  let cookies = document.cookie.split(";"); // Gets cookies and splits them per cookie
-                                            // Each cookie is composed of cookiename=value; cookiename2=value2; etc.
-  cookies.forEach(c =>{
-    let pair = c.split("="); // Makes the pair being [0]=cookiename && [1]=value
-    if (pair[0].trim() == 'usremail'){
-      quiz_json.owner = decodeURIComponent(pair[1]);
-    }
-  });
+  quiz_json.owner = localStorage.getItem('usremail');
+  // quiz_json.description = document.querySelector('.text-input').value.trim();
   
-  publish_quiz();
+  if(publish_quiz())
+    window.location.href = '../index.php';
   
 });
