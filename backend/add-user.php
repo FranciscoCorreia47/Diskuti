@@ -5,7 +5,7 @@
         $first_name = $_POST["first-name"];
         $last_name = $_POST["last-name"];
         $email = $_POST["email"];
-        $password = $_POST["password"];
+        $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
         $sql = $connection->prepare("INSERT INTO users(first_name, last_name, email, password) VALUES(?, ?, ?, ?);");
 

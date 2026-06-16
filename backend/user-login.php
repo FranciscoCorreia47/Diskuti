@@ -7,8 +7,8 @@
         $email = $_POST["email"];
         $password = $_POST["password"];
 
-        $sql = $connection->prepare("SELECT * FROM users WHERE email = ? AND password = ?;");
-        $sql->bind_param("ss", $email, $password);
+        $sql = $connection->prepare("SELECT * FROM users WHERE email = ?;");
+        $sql->bind_param("s", $email);
         $sql->execute();
         $result = $sql->get_result();
 
@@ -17,10 +17,15 @@
         }
         else{
             $user = $result->fetch_assoc();
-            $_SESSION["id"] = $user["id"];
-            $_SESSION["email"] = $email;
-            setcookie("usremail", $email, time() + 3600, "/");
-            echo "ok";
+            if(password_verify($password, $user["password"])){
+                $_SESSION["id"] = $user["id"];
+                $_SESSION["email"] = $email;
+                setcookie("usremail", $email, time() + 3600, "/");
+                echo "ok";
+            }
+            else{
+                echo "error";
+            }
         }
     }
 ?>
