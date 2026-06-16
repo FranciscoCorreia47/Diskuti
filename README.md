@@ -178,156 +178,6 @@ Before installation, ensure you have:
 
 ---
 
-## Installation
-
-### Step 1: Clone the Repository
-
-```bash
-cd /var/www
-git clone <repository-url> Diskuti
-cd Diskuti
-```
-
-### Step 2: Install Backend Dependencies
-
-```bash
-cd backend
-composer install
-cd ..
-```
-
-### Step 3: Create Database
-
-```bash
-mysql -u root -p
-
-CREATE DATABASE diskuti_db;
-CREATE USER 'diskuti'@'localhost' IDENTIFIED BY 'd1sk_t1#Db';
-GRANT ALL PRIVILEGES ON diskuti_db.* TO 'diskuti'@'localhost';
-FLUSH PRIVILEGES;
-EXIT;
-```
-
-### Step 4: Import Database Schema
-
-Create the database tables in your MySQL client:
-
-```sql
-USE diskuti_db;
-
--- Users table
-CREATE TABLE users (
-  id INT PRIMARY KEY AUTO_INCREMENT,
-  email VARCHAR(255) UNIQUE NOT NULL,
-  password VARCHAR(255) NOT NULL,
-  first_name VARCHAR(100) NOT NULL,
-  last_name VARCHAR(100) NOT NULL,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
--- Quizzes table
-CREATE TABLE quizzes (
-  id INT PRIMARY KEY AUTO_INCREMENT,
-  user_id INT NOT NULL,
-  name VARCHAR(255) NOT NULL,
-  creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  banner VARCHAR(255),
-  FOREIGN KEY (user_id) REFERENCES users(id)
-);
-
--- Chat sessions table
-CREATE TABLE chats (
-  id INT PRIMARY KEY AUTO_INCREMENT,
-  user1_id INT NOT NULL,
-  user2_id INT NOT NULL,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (user1_id) REFERENCES users(id),
-  FOREIGN KEY (user2_id) REFERENCES users(id)
-);
-
--- Messages table
-CREATE TABLE messages (
-  id INT PRIMARY KEY AUTO_INCREMENT,
-  chat_id INT NOT NULL,
-  user_id INT NOT NULL,
-  text TEXT NOT NULL,
-  sent_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (chat_id) REFERENCES chats(id),
-  FOREIGN KEY (user_id) REFERENCES users(id)
-);
-```
-
-### Step 5: Configure Web Server
-
-**Apache (.htaccess)**:
-```apache
-<IfModule mod_rewrite.c>
-  RewriteEngine On
-  RewriteBase /Diskuti/
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^(.*)$ index.php?/$1 [L]
-</IfModule>
-```
-
-**Nginx**:
-```nginx
-location /Diskuti/ {
-  if (!-e $request_filename){
-    rewrite ^(.*)$ /Diskuti/index.php break;
-  }
-}
-```
-
----
-
-## Configuration
-
-### Backend Configuration
-
-Edit `backend/config.php` with your database credentials:
-
-```php
-<?php
-    $host = "localhost";
-    $username = "diskuti";
-    $password = "d1sk_t1#Db";
-    $database = "diskuti_db";
-
-    $connection = new mysqli($host, $username, $password, $database);
-?>
-```
-
-### Pusher Configuration
-
-Add your Pusher credentials to your configuration:
-
-1. Sign up at [pusher.com](https://pusher.com)
-2. Create a new app and get your keys
-3. Add to your configuration files where real-time features are initialized
-
----
-
-## Database Setup
-
-The application uses the following database structure:
-
-### Tables Overview
-
-| Table | Purpose |
-|-------|---------|
-| `users` | Stores user account information |
-| `quizzes` | Stores quiz metadata and ownership |
-| `chats` | Manages chat sessions between users |
-| `messages` | Stores individual chat messages |
-
-For a complete schema dump, run:
-```bash
-mysqldump -u diskuti -p diskuti_db > backup.sql
-```
-
----
-
 ## Usage
 
 ### Starting the Application
@@ -352,7 +202,7 @@ mysqldump -u diskuti -p diskuti_db > backup.sql
 1. Click the **Create Quiz** button (+) in the navigation
 2. Enter a quiz name
 3. Add questions using the sidebar tools:
-   - **Text**: Open-ended questions
+   - **Text**: Description for the quiz (optional)
    - **Checkbox**: Multiple correct answers
    - **Radio**: Single correct answer
    - **Upload**: Add quiz banner image
@@ -367,7 +217,7 @@ mysqldump -u diskuti -p diskuti_db > backup.sql
 
 ### Real-Time Chat
 
-1. Navigate to **My Chats**
+1. Use the sidebar on the main page
 2. Start a new conversation or select an existing one
 3. Messages update in real-time
 4. View chat history anytime
@@ -395,7 +245,6 @@ mysqldump -u diskuti -p diskuti_db > backup.sql
 **RESTful API** endpoints:
 - Separate endpoints for each feature (chat, quizzes, users)
 - JSON request/response format
-- CORS support for cross-origin requests
 - Database abstraction with MySQLi prepared statements
 
 ### Data Flow
@@ -511,30 +360,10 @@ We welcome contributions! To contribute:
 5. **Open** a Pull Request
 
 ### Code Guidelines
-- Follow PSR-12 PHP coding standards
 - Write meaningful commit messages
 - Test your changes thoroughly
 - Document new features in this README
-
----
-
-## File Permissions
-
-Ensure proper file permissions for production:
-
-```bash
-# Web server files
-chmod 755 /var/www/Diskuti
-chmod 755 /var/www/Diskuti/frontend
-chmod 755 /var/www/Diskuti/backend
-chmod 755 /var/www/Diskuti/backend/banners
-
-# Web server writable directories
-chmod 775 /var/www/Diskuti/backend/banners
-
-# Config files (be careful with permissions)
-chmod 600 /var/www/Diskuti/backend/config.php
-```
+- Add Doxygen Style documentation to functions and descriptive comments in logic
 
 ---
 
@@ -545,21 +374,18 @@ chmod 600 /var/www/Diskuti/backend/config.php
 - Use **MySQL query caching** where applicable
 - Implement **CSS/JavaScript minification**
 - Use **browser caching** headers
-- Consider **CDN** for static assets
-- Enable **GZIP compression** on web server
 
 ---
 
 ## License
 
-This project is proprietary and confidential. All rights reserved.
+This project is free and open-source.
 
 ---
 
 ## Support
 
 For issues, questions, or suggestions:
-- 📧 Email: support@diskuti.local
 - 🐛 Report bugs: Create an issue in the repository
 - 💬 Discussions: Use the repository discussions feature
 
