@@ -194,3 +194,7 @@ input[type="button"]:hover {
     font-size: 1.1rem;
     color: #202020;
 }
+
+@view-transition {
+  navigation: auto;
+}

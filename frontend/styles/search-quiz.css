@@ -126,3 +126,7 @@
     cursor: pointer;
     font-size: 1.3rem;
 }
+
+@view-transition {
+  navigation: auto;
+}
