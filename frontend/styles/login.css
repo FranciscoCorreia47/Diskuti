@@ -194,3 +194,75 @@ input[type="button"]:hover {
     font-size: 1.1rem;
     color: #202020;
 }
+
+@media (max-width: 900px) {
+    .horizontal {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .banner {
+        display: none !important;
+        visibility: hidden;
+        width: 0 !important;
+        min-height: 0 !important;
+        height: 0 !important;
+        overflow: hidden;
+    }
+
+    .area {
+        width: 100vw;
+        min-height: 100vh;
+        height: auto;
+        padding: 2rem 0;
+    }
+
+    .area-banner {
+        width: 100%;
+        padding: 2rem 1.5rem;
+        align-items: flex-start;
+    }
+
+    .area-banner img {
+        width: 30vw;
+        margin-bottom: 1rem;
+    }
+
+    .area-banner h1 {
+        font-size: 5vh;
+    }
+
+    .area-banner h3 {
+        font-size: 2.5vh;
+    }
+
+    .area-form {
+        width: 100%;
+        padding: 0 1.5rem 2rem;
+    }
+
+    .area-form form {
+        gap: 1.5rem;
+    }
+
+    input[type="email"], input[type="password"], input[type="text"] {
+        height: auto;
+        min-height: 2.5rem;
+        padding: 0.85rem 1rem;
+        font-size: 1.5rem;
+    }
+
+    .separator {
+        width: 100%;
+        margin: 2.5rem 0;
+    }
+
+    .external-link {
+        text-align: center;
+    }
+
+    .login-error {
+        left: 5vw;
+        width: 90%;
+    }
+}
