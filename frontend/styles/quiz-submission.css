@@ -1,3 +1,16 @@
+.quiz-description {
+    width: 50vw;
+    margin: 1rem auto;
+    padding: 1.2rem 1.4rem;
+    background-color: #ffffff;
+    border-radius: 18px;
+    border: 1px solid #cccccc;
+    box-shadow: 0 0 10px -6px #202020;
+    color: #202020;
+    font-size: 1.05rem;
+    line-height: 1.75;
+}
+
 .questions-section {
     width: 50vw;
     background-color: #f1f1f1;

@@ -7,7 +7,15 @@ fetch(`../backend/entire-quizzes.php?quiz-id=${quiz_id}`)
 .then(data => {
     const questions_section = document.querySelector(".questions-section");
     const quiz_name = document.querySelector("#quiz-name");
+    const quiz_description = document.querySelector("#quiz-description");
+
     quiz_name.textContent = `${data["user_name"]} - ${data["name"]}`;
+    if (data.description && data.description.trim() !== "") {
+        quiz_description.textContent = data.description;
+        quiz_description.parentElement.style.display = "block";
+    } else {
+        quiz_description.parentElement.style.display = "none";
+    }
 
     let i = 1;
 

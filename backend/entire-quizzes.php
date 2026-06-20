@@ -5,13 +5,14 @@
         $selected_quiz_id = $_GET["quiz-id"];
         $quiz_data = new stdClass();
 
-        $quiz_sql = $connection->prepare("SELECT id, name, (SELECT CONCAT(first_name, ' ', last_name) FROM users WHERE quizzes.user_id = users.id) AS user_full_name, (SELECT id FROM users WHERE quizzes.user_id = users.id) AS user_id FROM quizzes WHERE quizzes.id = ?;");
+        $quiz_sql = $connection->prepare("SELECT id, name, description, (SELECT CONCAT(first_name, ' ', last_name) FROM users WHERE quizzes.user_id = users.id) AS user_full_name, (SELECT id FROM users WHERE quizzes.user_id = users.id) AS user_id FROM quizzes WHERE quizzes.id = ?;");
         $quiz_sql->bind_param("s", $selected_quiz_id);
         $quiz_sql->execute();
         $result = $quiz_sql->get_result();
         $quiz = $result->fetch_assoc();
         
         $quiz_data->name = $quiz["name"];
+        $quiz_data->description = $quiz["description"];
         $quiz_data->user_name = $quiz["user_full_name"];
         $quiz_data->user_id = $quiz["user_id"];
 

@@ -38,6 +38,9 @@
         </li>
       </ul>
     </section>
+    <section class="quiz-description">
+      <p id="quiz-description"></p>
+    </section>
     <section class="questions-section"></section>
     <div id="result-box" class="result-box" style="display:none;"></div>
     <div id="comment-box" class="comment-box" style="display:none;"></div>

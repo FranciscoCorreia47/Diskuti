@@ -54,8 +54,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
   /** Inserting all data */
   $name = $quiz_data['name'];
+  $description = isset($quiz_data['description']) ? $quiz_data['description'] : "";
   $questions = $quiz_data['questions'];
 
+  $fullPath = '';
   // Checking for banner
   if(isset($_FILES['banner'])){
     $banner = $_FILES['banner'];
@@ -69,8 +71,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
   }
 
   // Inserting the quiz
-  $sql = $connection->prepare("INSERT INTO quizzes(name, banner, user_id) VALUES(?,?,?)");
-  $sql->bind_param("sss", $name, $fullPath, $owner);
+  $sql = $connection->prepare("INSERT INTO quizzes(name, banner, user_id, description) VALUES(?,?,?,?)");
+  $sql->bind_param("ssss", $name, $fullPath, $owner, $description);
   if (!$sql->execute()) {
     $response = ['status' => 'error', 'message' => 'Error inserting quiz'];
     http_response_code(500);
@@ -78,29 +80,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     exit;
   }
 
-  // Getting the inserted quiz's ID
-  $sql = $connection->prepare("SELECT id FROM quizzes WHERE name LIKE ? AND user_id LIKE ?;");
-  $sql->bind_param("ss", $name, $owner);
-  if (!$sql->execute()) {
-    $response = ['status' => 'error', 'message' => 'Error getting quiz ID'];
-    http_response_code(500);
-    echo json_encode($response);
-    exit;
-  }
-
-  $result = $sql->get_result();
-
-  if(mysqli_num_rows($result) < 1){
-    $response = ['status' => 'error', 'message' => 'Error inserting quiz'];
-    http_response_code(400);
-    echo json_encode($response);
-    exit;
-  }
-  else{
-    foreach($result as $row){
-      $quiz_id = $row['id'];
-    }
-  }
+  $quiz_id = $connection->insert_id;
 
 
   foreach($questions as $question){
@@ -118,29 +98,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
       exit;
     }
 
-    // Getting the inserted question's ID
-    $sql = $connection->prepare("SELECT id FROM questions WHERE text LIKE ? AND quiz_id LIKE ?;");
-    $sql->bind_param("ss", $q_prompt, $quiz_id);
-    if (!$sql->execute()) {
-      $response = ['status' => 'error', 'message' => 'Error getting question ID'];
-      http_response_code(500);
-      echo json_encode($response);
-      exit;
-    }
-
-    $result = $sql->get_result();
-
-    if(mysqli_num_rows($result) < 1){
-      $response = ['status' => 'error', 'message' => 'Error inserting question'];
-      http_response_code(400);
-      echo json_encode($response);
-      exit;
-    }
-    else{
-      foreach($result as $row){
-        $quest_id = $row['id'];
-      }
-    }
+    $quest_id = $connection->insert_id;
 
     foreach($q_opts as $opts){
       $opt_txt = $opts['text'];

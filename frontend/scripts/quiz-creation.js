@@ -235,12 +235,18 @@ input.addEventListener('change', () => {
 
 const publish_button = document.querySelector(".publish");
 
-publish_button.addEventListener("click", function(){
+if (!publish_button) {
+  console.error("Publish button not found (.publish)");
+} else {
+  console.log("Publish button found");
+  publish_button.addEventListener("click", function(){
+    console.log("Publish button clicked");
   const quiz_questions = document.querySelectorAll(".question-div");
 
   let current_question_num = 0;
   let quiz_json = {
-      "name": quiz_name.name, 
+      "name": quiz_name.name,
+      "description": "",
       "questions": new Array,
   };
 
@@ -276,26 +282,30 @@ publish_button.addEventListener("click", function(){
       formData.append('banner', image);
       formData.append('data', JSON.stringify(quiz_json));
 
-      fetch('../backend/quiz-publish.php', {
+      const response = await fetch('../backend/quiz-publish.php', {
         method: 'POST',
         body: formData
-      })
-      .then(res => {
-        if (!res.ok)
-          throw new Error(`Backend gave status ${res.status }`)
-        return res.json();
-      })
-      .then(data => {return true});
+      });
+
+      if (!response.ok)
+        throw new Error(`Backend gave status ${response.status}`);
+
+      return await response.json();
 
     } catch (error) {
       console.error("Network or parsing error:", error);
+      throw error;
     }
   }
 
   quiz_json.owner = localStorage.getItem('usremail');
-  // quiz_json.description = document.querySelector('.text-input').value.trim();
+  const descriptionInputText = document.querySelector('.text-input').value;
+  quiz_json.description = descriptionInputText ? descriptionInputText.trim() : "";
+  console.log(quiz_json.description);
   
-  if(publish_quiz())
-    window.location.href = '../index.php';
-  
-});
+  publish_quiz()
+    .then(() => window.location.href = '../index.php')
+    .catch(error => console.error(error));
+    
+  });
+}

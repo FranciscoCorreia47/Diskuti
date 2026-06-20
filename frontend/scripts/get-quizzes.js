@@ -1,26 +1,17 @@
 const params = new URLSearchParams(window.location.search);
 const user_id = params.get("user-id");
 
-function convertDate(date_structure){
-    let date = "";
-    let time = "";
-    let day = "";
-    let month = "";
-    let year = "";
-    let secs = "";
-    let mins = "";
-    let hours = "";
+function convertDate(date_structure) {
+    if (!date_structure) return "";
 
-    if(date_structure.includes(" ")){
-        let [date, time] = date_structure.split(" ");
-        let [year, month, day] = date.split("-");
-        let [hours, mins, secs] = time.split(":");
+    if (date_structure.includes(" ")) {
+        const [datePart, timePart] = date_structure.split(" ");
+        const [year, month, day] = datePart.split("-");
+        const [hours, mins] = timePart.split(":");
 
         return `${day}/${month}/${year} ${hours}:${mins}`;
-    }
-    else{
-        let [year, month, day] = date_structure.split("-");
-
+    } else {
+        const [year, month, day] = date_structure.split("-");
         return `${day}/${month}/${year}`;
     }
 }
@@ -175,6 +166,7 @@ function renderQuiz(quiz, quizzes_list, comment_section) {
 fetch(`../backend/get-quizzes.php?user-id=${user_id}`)
 .then(response => response.json())
 .then(data => {
+    console.log(data);
     const quizzes_list = document.querySelector(".quizzes-list");
     const search_box = document.querySelector(".search-box"); 
     const search_input = document.querySelector("#search-bar");
