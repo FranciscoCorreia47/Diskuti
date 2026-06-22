@@ -324,6 +324,7 @@ main {
 
 .chat-contact:hover {
   background-color: #eaeaea;
+  cursor: pointer;
 }
 
 .chat-contact>.name-span {
